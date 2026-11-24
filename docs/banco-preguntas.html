@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Atkinson+Hyperlegible+Next:wght@400..700&family=JetBrains+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<title>Banco de preguntas · Arquitectura de Videojuegos</title>
+</head>
+<body data-page="docs" data-base="../">
+<header class="mast" id="mast" data-meta="Quices de las 8 clases · opción múltiple con explicación" data-h1="Banco de preguntas del curso" data-q="Todas las preguntas de los quices de clase, organizadas por semana y tema, con la respuesta y por qué. El quiz-parcial del Corte I sale de las semanas 1 y 2."></header>
+<main class="wrap">
+  <div class="doctools">
+    <button class="btn" id="key">Ocultar respuestas</button>
+    <a class="btn alt" href="../entregables/Banco-de-preguntas-con-respuestas.pdf" download>PDF con respuestas</a>
+    <a class="btn alt" href="../entregables/Banco-de-preguntas-estudiante.pdf" download>PDF estudiante</a>
+  </div>
+  <article class="doc">
+    <h1>Banco de preguntas</h1>
+    <p>Corporación Unificada Nacional de Educación Superior, CUN · Especialización en Diseño y Desarrollo de Videojuegos · Arquitectura de Videojuegos · Docente: Andrés Ordóñez-Bolaños</p>
+    <table class="tbl resumen" id="resumen"><thead><tr><th>Semana</th><th>Tema de la clase</th><th>Preguntas</th></tr></thead><tbody></tbody></table>
+    <div id="todo"><p>Cargando preguntas…</p></div>
+  </article>
+</main>
+<div id="foot"></div>
+<script src="../data/curso.js"></script>
+<script src="../assets/app.js"></script>
+<script>
+(async function () {
+  const A = window.ARQ, L = 'ABCD', clases = [];
+  if (/[?&]estudiante=1/.test(location.search)) document.body.classList.add('nokey');
+  for (let n = 1; n <= 8; n++) {
+    window.CLASE = null;
+    await A.loadScript('../data/s' + n + '.js');
+    if (window.CLASE && window.CLASE.quiz) clases.push(window.CLASE);
+  }
+  let total = 0;
+  document.querySelector('#resumen tbody').innerHTML = clases.map(k => { total += k.quiz.length; return `<tr><td>${k.n}</td><td>${k.titulo}</td><td>${k.quiz.length}</td></tr>`; }).join('') + `<tr><td></td><td><b>Total</b></td><td><b>${total}</b></td></tr>`;
+  let num = 0;
+  document.getElementById('todo').innerHTML = clases.map(k => `<h2>Semana ${k.n} · ${k.titulo}</h2>` + k.quiz.map(q => {
+    num++;
+    return `<div class="bq"><div class="meta">Pregunta ${num}${q.tema ? ' · ' + q.tema : ''}</div><p><b>${q.q}</b></p>${q.code ? `<pre>${A.esc(q.code.src)}</pre>` : ''}<ol>${q.opts.map(o => `<li>${o}</li>`).join('')}</ol><p class="ans"><b>Respuesta: ${L[q.ok]}.</b> ${q.why}</p></div>`;
+  }).join('')).join('') + `<div class="keyonly"><h2>Clave rápida</h2><table class="tbl"><thead><tr><th>Semana</th><th>Respuestas en orden</th></tr></thead><tbody>${clases.map(k => `<tr><td>${k.n}</td><td>${k.quiz.map((q, i) => (i + 1) + L[q.ok]).join('  ')}</td></tr>`).join('')}</tbody></table></div>`;
+  document.querySelectorAll('.bq .ans').forEach(e => e.classList.add('ans'));
+  const b = document.getElementById('key');
+  const pinta = () => { b.textContent = document.body.classList.contains('nokey') ? 'Mostrar respuestas' : 'Ocultar respuestas'; };
+  b.onclick = () => { document.body.classList.toggle('nokey'); pinta(); }; pinta();
+  document.body.dataset.listo = '1';
+})();
+</script>
+</body>
+</html>

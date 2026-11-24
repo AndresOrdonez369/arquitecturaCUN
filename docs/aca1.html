@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Atkinson+Hyperlegible+Next:wght@400..700&family=JetBrains+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<title>ACA 1 · Diagnóstico y plano de rescate · Arquitectura de Videojuegos</title>
+</head>
+<body data-page="docs" data-base="../">
+<header class="mast" id="mast" data-meta="Actividad de Construcción Aplicada N.º 1 · Corte II · 30 %" data-h1="ACA 1: diagnóstico y plano de rescate" data-q="Antes de tocar una línea de Turno Nocturno, demuestra que entiendes por qué está enredado y dibuja cómo debería quedar."></header>
+<main class="wrap">
+<div class="doctools"><a class="btn" href="../entregables/ACA1-Diagnostico-y-plano-de-rescate.pdf" download>Descargar PDF</a><button class="btn alt" onclick="print()">Imprimir</button><a class="btn alt" href="../proyecto/TurnoNocturno/README.html">Ver Turno Nocturno</a></div>
+<article class="doc">
+<h1>Actividad de Construcción Aplicada (ACA) 1</h1>
+<p>Corporación Unificada Nacional de Educación Superior, CUN · Especialización en Diseño y Desarrollo de Videojuegos</p>
+<table class="tbl ficha"><tbody><tr><td>Asignatura</td><td>Arquitectura de Videojuegos</td><td>Docente / facilitador</td><td>Andrés Ordóñez-Bolaños</td></tr><tr><td>Periodo / bloque / corte</td><td>Bloque 26ES6 · Bloque 1 · Corte II (semanas 3 a 5)</td><td>ACA N.º</td><td>1</td></tr><tr><td>Fecha de apertura (C Digital)</td><td>07 / 12 / 2026</td><td>Fecha de cierre (C Digital)</td><td>27 / 12 / 2026</td></tr><tr><td>Ponderación</td><td>30 % de la nota final</td><td>Modalidad</td><td>Individual o en parejas</td></tr></tbody></table>
+
+<h2>Objetivo del ACA</h2>
+<p>Diagnosticar la arquitectura del videojuego "Turno Nocturno" (C#, consola) y diseñar su arquitectura objetivo, categorizando sus problemas de acoplamiento y cohesión y proponiendo módulos, patrones de diseño y un plan de refactorización por pasos, con el fin de evidenciar criterio de arquitectura antes de implementar el rescate completo en el ACA 2.</p>
+
+<h2>Pregunta orientadora o situación problema</h2>
+<p>El estudio heredó un juego que funciona, pero cada cambio rompe otra cosa. ¿Cómo se puede categorizar la arquitectura de un videojuego existente y rediseñarla con patrones de diseño y buenas prácticas, para que sea modular, pueda crecer y se pueda probar, sin reescribirlo desde cero?</p>
+<p><i>Se alinea con la competencia del curso: "Categoriza la arquitectura de software, en el contexto de patrones de diseño, buenas prácticas, técnicas de optimización de memoria y estrategias de testing y depuración, para garantizar la modularidad, la escalabilidad y el desempeño en contextos reales y simulados para videojuegos."</i></p>
+
+<h2>Resultados de aprendizaje esperados</h2>
+<p>Al finalizar esta actividad, el estudiante estará en capacidad de:</p>
+<table class="tbl"><tbody><tr><td><b>RA1</b></td><td>Analizar un código de juego existente e identificar, con evidencia, sus problemas de acoplamiento, cohesión y mezcla de responsabilidades.</td></tr><tr><td><b>RA2</b></td><td>Diseñar una arquitectura objetivo por módulos (diagrama de clases UML y dependencias) que aplique de forma justificada al menos tres patrones de diseño vistos en clase.</td></tr><tr><td><b>RA3</b></td><td>Modelar el flujo del juego como una máquina de estados con transiciones por evento.</td></tr><tr><td><b>RA4</b></td><td>Planear una refactorización en pasos pequeños y verificables, y ejecutar el primero dejando el juego funcionando.</td></tr></tbody></table>
+
+<h2>Descripción de la actividad</h2>
+<p>Recibes "Turno Nocturno": un juego de consola donde un robot vigilante espanta bichos a chispazos en una sala de servidores. Corre, se puede ganar y perder, y todo su código vive en un solo archivo. Tu trabajo en este ACA es de <b>arquitecto</b>: entender, diagnosticar y dibujar el plano. El rescate completo se implementa en el ACA 2.</p>
+<p><b>Regla de oro:</b> no se reescribe desde cero. Un rescate conserva el comportamiento del juego y cambia su estructura.</p>
+<h3>Ventana de trabajo: 3 semanas, una entrega interna por semana</h3>
+<ul>
+<li><b>Semana 3 (07/12 a 13/12) · Diagnóstico.</b> Ejecuta el juego y lee <code>Program.cs</code>. Dibuja el mapa de dependencias actual (quién toca a quién) y levanta la lista de olores con número de línea. Dibuja la máquina de estados del juego tal como debería ser. <i>Meta: sabes explicar por qué agregar un bicho nuevo hoy es caro.</i></li>
+<li><b>Semana 4 (14/12 a 20/12) · Plano.</b> Diseña la arquitectura objetivo: módulos, clases y patrones. La sesión de esta semana incluye asesoría: trae tu borrador de diagrama para afinarlo. <i>Meta: un diagrama que otra persona podría implementar.</i></li>
+<li><b>Semana 5 (21/12 a 27/12) · Primer corte y entrega.</b> Ordena el plan de refactor, ejecuta el paso 1 en código, redacta el PDF y sube todo a C Digital antes del 27/12. <i>Meta: el juego sigue funcionando igual y ya tiene su primera pieza limpia.</i></li>
+</ul>
+
+<h2>Producto(s) final(es) a entregar</h2>
+<p>Los productos se entregan exclusivamente en C Digital, en los formatos solicitados.</p>
+<h3>Producto principal: documento de arquitectura (PDF, máximo 6 páginas de contenido, sin contar portada ni referencias)</h3>
+<p>Estructura obligatoria:</p>
+<ol>
+<li><b>Diagnóstico.</b> Mapa de dependencias del código actual y tabla de al menos <b>5 olores</b>: línea o fragmento, qué responsabilidades mezcla, qué cambio futuro encarece.</li>
+<li><b>Arquitectura objetivo.</b> Diagrama de módulos con la dirección de sus dependencias y diagrama de clases UML (mínimo 7 clases o interfaces) con relaciones explícitas.</li>
+<li><b>Patrones.</b> Tabla de al menos <b>3 patrones</b> (State es obligatorio; elige los otros entre Observer, Command, Factory, Strategy, Componente y Service Locator): qué problema concreto de Turno Nocturno resuelve cada uno y qué pasaría si no se usara.</li>
+<li><b>Máquina de estados del juego.</b> Mínimo 5 estados (Menú, Jugando, Pausa, Game Over, Victoria) con el evento que dispara cada transición.</li>
+<li><b>Plan de refactorización.</b> De 6 a 10 pasos pequeños, ordenados, cada uno con su criterio de "sigue funcionando" (cómo compruebas que no rompiste nada).</li>
+<li><b>Mini RAE (media página).</b> Resumen analítico de una fuente sobre arquitectura de juegos o motores (sugeridas: Gregory, 2018, cap. 1; Ullmann et al., 2023 o 2024; un capítulo de Nystrom, <i>Game Programming Patterns</i>): idea central, cómo la usaste en tu diseño y cita en APA 7.</li>
+<li><b>Reflexión final (media página).</b> Qué fue lo más difícil de entender del código ajeno, qué decisión te costó más y de cuál dudas todavía.</li>
+</ol>
+<h3>Producto complementario: primer corte del refactor (repositorio Git o ZIP)</h3>
+<ul>
+<li>El proyecto compila y ejecuta con <code>dotnet run</code> y se juega igual que el original.</li>
+<li>El bucle principal quedó separado en entrada, actualización y dibujo, y el movimiento usa delta time en lugar de depender de <code>Thread.Sleep</code>.</li>
+<li>Al menos <b>una</b> entidad salió de las listas paralelas a una clase propia en su archivo (por ejemplo <code>Bicho</code> o <code>Chispa</code>).</li>
+<li>Historial de commits que muestre los pasos (mínimo 3 commits con mensajes claros).</li>
+</ul>
+<p><b>Entregar en Unity (opcional):</b> quien prefiera puede portar el juego a Unity. Las exigencias de arquitectura son las mismas y el documento es idéntico.</p>
+
+<h2>Pistas y errores comunes</h2>
+<ul>
+<li>Un olor no es "el código es feo". Es una frase del tipo: "para cambiar X tengo que abrir Y y Z".</li>
+<li>No pongas patrones para lucirlos. Cada patrón debe responder a un olor de tu tabla de diagnóstico.</li>
+<li>En el diagrama de módulos, las flechas van de quien usa hacia lo usado. Si dos módulos se apuntan entre sí, hay un ciclo: rómpelo con una interfaz.</li>
+<li>Las reglas del juego no deberían conocer <code>Console</code>, archivos ni sonido. Esa separación es la que permite probar en el ACA 2.</li>
+<li>Pasos pequeños: si un paso del plan toma más de una tarde, pártelo.</li>
+</ul>
+
+<h2>Formato de entrega</h2>
+<ul>
+<li>Un PDF con nombre <code>ACA1_Apellido_Nombre.pdf</code> (en parejas: <code>ACA1_Apellido1_Apellido2.pdf</code>), letra de 11 o 12 puntos, diagramas legibles exportados como imagen (draw.io, PlantUML, Mermaid o a mano escaneado con buena luz).</li>
+<li>El enlace al repositorio va en la portada del PDF. Si entregas ZIP, súbelo junto al PDF sin carpetas <code>bin</code> ni <code>obj</code>.</li>
+<li>Referencias y citas en APA 7.</li>
+</ul>
+<h2>Lista de chequeo antes de entregar</h2><table class="tbl lista"><tbody><tr><td class="box"></td><td>El mapa de dependencias muestra quién toca a quién en el código actual.</td></tr><tr><td class="box"></td><td>La tabla tiene al menos 5 olores con línea, responsabilidades mezcladas y cambio que encarecen.</td></tr><tr><td class="box"></td><td>El diagrama de módulos no tiene ciclos y las flechas van de quien usa hacia lo usado.</td></tr><tr><td class="box"></td><td>El UML tiene 7 o más clases o interfaces con relaciones explícitas.</td></tr><tr><td class="box"></td><td>Cada uno de los 3 patrones responde a un olor concreto de la tabla.</td></tr><tr><td class="box"></td><td>La máquina de estados tiene 5 estados y cada transición dice qué evento la dispara.</td></tr><tr><td class="box"></td><td>Cada paso del plan dice cómo compruebo que el juego sigue funcionando.</td></tr><tr><td class="box"></td><td>El código compila con <code>dotnet run</code>, se juega igual y tiene 3 o más commits.</td></tr><tr><td class="box"></td><td>El RAE cita en APA 7 y conecta la fuente con una decisión mía.</td></tr></tbody></table>
+
+<h2>Criterios y rúbrica de evaluación</h2>
+<p>Cada criterio se califica de 1.0 a 5.0 según el descriptor alcanzado.</p>
+<table class="tbl"><thead><tr><th class="g" colspan="2">Criterio 1 · Diagnóstico del código actual · Peso: 25 %</th></tr></thead><tbody>
+<tr><td class="pct">5.0</td><td>Mapa de dependencias claro y al menos 5 olores con evidencia (línea o fragmento), responsabilidades mezcladas y el cambio futuro que encarecen. Usa con precisión acoplamiento y cohesión.</td></tr>
+<tr><td class="pct">4.0</td><td>Diagnóstico completo con 5 olores; uno o dos sin evidencia precisa o sin consecuencia.</td></tr>
+<tr><td class="pct">3.0</td><td>Identifica 3 o 4 olores reales pero descritos de forma general. Mapa de dependencias incompleto.</td></tr>
+<tr><td class="pct">2.0</td><td>Lista quejas de estilo (nombres, formato) sin llegar a problemas de arquitectura.</td></tr>
+<tr><td class="pct">1.0</td><td>No entrega diagnóstico o no se relaciona con el código.</td></tr>
+</tbody></table>
+<table class="tbl"><thead><tr><th class="g" colspan="2">Criterio 2 · Arquitectura objetivo y patrones · Peso: 30 %</th></tr></thead><tbody>
+<tr><td class="pct">5.0</td><td>Módulos con dependencias en una sola dirección y sin ciclos. UML correcto con 7 o más clases o interfaces. Tres o más patrones, cada uno ligado a un olor del diagnóstico y con su justificación.</td></tr>
+<tr><td class="pct">4.0</td><td>Arquitectura sólida con leves imprecisiones de notación, o un patrón justificado de forma genérica.</td></tr>
+<tr><td class="pct">3.0</td><td>Diseño razonable pero con una dependencia circular, un objeto que sigue haciendo demasiado o patrones nombrados sin problema que resolver.</td></tr>
+<tr><td class="pct">2.0</td><td>Diagrama que solo reparte el código en archivos sin cambiar responsabilidades. Patrones mal aplicados.</td></tr>
+<tr><td class="pct">1.0</td><td>No entrega diseño o no es reconocible como arquitectura.</td></tr>
+</tbody></table>
+<table class="tbl"><thead><tr><th class="g" colspan="2">Criterio 3 · Máquina de estados · Peso: 15 %</th></tr></thead><tbody>
+<tr><td class="pct">5.0</td><td>Cinco o más estados, todas las transiciones con su evento, casos borde cubiertos (perder la última vida, terminar la última oleada, pausar).</td></tr>
+<tr><td class="pct">4.0</td><td>Cinco estados y la mayoría de transiciones; uno o dos eventos sin etiqueta.</td></tr>
+<tr><td class="pct">3.0</td><td>Estados básicos con transiciones ambiguas.</td></tr>
+<tr><td class="pct">2.0</td><td>Solo enumera estados, sin transiciones.</td></tr>
+<tr><td class="pct">1.0</td><td>No entrega máquina de estados.</td></tr>
+</tbody></table>
+<table class="tbl"><thead><tr><th class="g" colspan="2">Criterio 4 · Plan y primer corte en código · Peso: 20 %</th></tr></thead><tbody>
+<tr><td class="pct">5.0</td><td>Plan de 6 a 10 pasos pequeños con criterio de verificación. El primer corte compila, se juega igual, separa entrada, actualización y dibujo con delta time y extrae una entidad a su clase. Commits claros.</td></tr>
+<tr><td class="pct">4.0</td><td>Plan correcto y primer corte funcional con una omisión menor (por ejemplo, sin delta time o sin historial de commits).</td></tr>
+<tr><td class="pct">3.0</td><td>Plan con pasos demasiado grandes o sin verificación. El código compila pero el cambio es cosmético.</td></tr>
+<tr><td class="pct">2.0</td><td>El código no compila por errores corregibles, o el plan es una lista de deseos.</td></tr>
+<tr><td class="pct">1.0</td><td>No entrega código ni plan.</td></tr>
+</tbody></table>
+<table class="tbl"><thead><tr><th class="g" colspan="2">Criterio 5 · Mini RAE y reflexión · Peso: 10 %</th></tr></thead><tbody>
+<tr><td class="pct">5.0</td><td>RAE que conecta la fuente con una decisión propia de diseño, cita APA 7 correcta. Reflexión autocrítica y concreta.</td></tr>
+<tr><td class="pct">4.0</td><td>RAE y reflexión presentes, algo descriptivas.</td></tr>
+<tr><td class="pct">3.0</td><td>RAE que solo resume la fuente. Reflexión superficial.</td></tr>
+<tr><td class="pct">2.0</td><td>RAE o reflexión muy breves o sin cita.</td></tr>
+<tr><td class="pct">1.0</td><td>No entrega RAE ni reflexión.</td></tr>
+</tbody></table>
+<p><b>Nota final ACA 1</b> = (C1 × 0.25) + (C2 × 0.30) + (C3 × 0.15) + (C4 × 0.20) + (C5 × 0.10)</p>
+<h2>Observaciones generales</h2>
+<ul>
+<li>El trabajo en parejas entrega un solo documento y un solo repositorio, e indica qué hizo cada integrante.</li>
+<li>Se puede usar asistencia de IA para leer o explicar código, pero el diagnóstico y las decisiones de diseño deben poder sustentarse en la asesoría de la semana 4 y en la socialización.</li>
+<li>Las entregas fuera de la fecha de cierre se rigen por el reglamento estudiantil.</li>
+</ul>
+</article>
+</main>
+<div id="foot"></div>
+<script src="../data/curso.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

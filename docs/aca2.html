@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Atkinson+Hyperlegible+Next:wght@400..700&family=JetBrains+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<title>ACA 2 · El rescate implementado · Arquitectura de Videojuegos</title>
+</head>
+<body data-page="docs" data-base="../">
+<header class="mast" id="mast" data-meta="Actividad de Construcción Aplicada N.º 2 (final) · Corte III · 32 %" data-h1="ACA 2: el rescate, medido y probado" data-q="Lleva tu plano del ACA 1 a código: patrones funcionando, memoria bajo control, contenido en datos y pruebas que lo demuestran."></header>
+<main class="wrap">
+<div class="doctools"><a class="btn" href="../entregables/ACA2-Rescate-implementado.pdf" download>Descargar PDF</a><button class="btn alt" onclick="print()">Imprimir</button><a class="btn alt" href="../proyecto/TurnoNocturno/README.html">Ver Turno Nocturno</a></div>
+<article class="doc">
+<h1>Actividad de Construcción Aplicada (ACA) 2</h1>
+<p>Corporación Unificada Nacional de Educación Superior, CUN · Especialización en Diseño y Desarrollo de Videojuegos</p>
+<table class="tbl ficha"><tbody><tr><td>Asignatura</td><td>Arquitectura de Videojuegos</td><td>Docente / facilitador</td><td>Andrés Ordóñez-Bolaños</td></tr><tr><td>Periodo / bloque / corte</td><td>Bloque 26ES6 · Bloque 1 · Corte III (semanas 6 y 7)</td><td>ACA N.º</td><td>2 (final)</td></tr><tr><td>Fecha de apertura (C Digital)</td><td>28 / 12 / 2026</td><td>Fecha de cierre (C Digital)</td><td>10 / 01 / 2027</td></tr><tr><td>Ponderación</td><td>32 % de la nota final</td><td>Sesión de asesoría</td><td>Semana 6 (trae tu núcleo ya separado)</td></tr></tbody></table>
+
+<h2>Objetivo del ACA</h2>
+<p>Implementar la arquitectura diseñada en el ACA 1 sobre el videojuego "Turno Nocturno", aplicando patrones de diseño, gestión de memoria con object pool medida antes y después, contenido dirigido por datos y pruebas unitarias de la lógica, con el fin de evidenciar el tránsito de un código acoplado a una solución modular, escalable, eficiente y verificable.</p>
+
+<h2>Pregunta orientadora o situación problema</h2>
+<p>¿Cómo se convierte un diseño de arquitectura en un juego que se deja cambiar, que no desperdicia memoria y cuya lógica se puede probar de forma automática, y cómo se demuestra con datos que el rescate mejoró el juego?</p>
+<p><i>Cierra el ciclo abierto en el ACA 1 y se alinea con la competencia del curso: "Categoriza la arquitectura de software, en el contexto de patrones de diseño, buenas prácticas, técnicas de optimización de memoria y estrategias de testing y depuración, para garantizar la modularidad, la escalabilidad y el desempeño en contextos reales y simulados para videojuegos."</i></p>
+
+<h2>Resultados de aprendizaje esperados</h2>
+<p>Al finalizar esta actividad, el estudiante estará en capacidad de:</p>
+<table class="tbl"><tbody><tr><td><b>RA1</b></td><td>Implementar una arquitectura por módulos donde las reglas del juego no dependen de la consola, el disco ni el sonido, aplicando al menos tres patrones de diseño.</td></tr><tr><td><b>RA2</b></td><td>Aplicar gestión de memoria con object pool y eliminar asignaciones por frame, demostrando la mejora con mediciones antes y después.</td></tr><tr><td><b>RA3</b></td><td>Construir contenido dirigido por datos, de modo que agregar un bicho o una oleada no requiera modificar el código del núcleo.</td></tr><tr><td><b>RA4</b></td><td>Escribir pruebas unitarias de la lógica del juego y documentar la depuración de un defecto con método.</td></tr><tr><td><b>RA5</b></td><td>Evaluar críticamente la propia arquitectura, documentando las diferencias entre el plano del ACA 1 y la implementación final.</td></tr></tbody></table>
+
+<h2>Del ACA 1 al ACA 2: qué reutilizas y qué sube de nivel</h2>
+<table class="tbl"><thead><tr><th class="g">En el ACA 1 (el plano)</th><th class="g">En el ACA 2 (la obra)</th></tr></thead><tbody>
+<tr><td>Diagrama de módulos y clases.</td><td>Proyectos y clases reales, con dependencias en una sola dirección.</td></tr>
+<tr><td>Máquina de estados dibujada.</td><td>Máquina de estados como código, sin booleanos sueltos.</td></tr>
+<tr><td>Patrones justificados en una tabla.</td><td>Patrones funcionando: State y al menos dos más.</td></tr>
+<tr><td>Un bicho extraído a su clase.</td><td>Bichos y oleadas definidos en datos (JSON o Lua) y creados por una fábrica.</td></tr>
+<tr><td>Plan de refactor.</td><td>Refactor ejecutado, con pruebas que lo protegen y cifras que lo respaldan.</td></tr>
+</tbody></table>
+
+<h2>Descripción de la actividad</h2>
+<p>Este es el ACA final del curso. El juego debe verse y jugarse igual o mejor que el original; lo que cambia es todo lo que hay debajo. El proyecto debe cumplir, como mínimo:</p>
+<ul>
+<li><b>Núcleo separado.</b> Las reglas viven en un proyecto o carpeta de núcleo que no usa <code>Console</code>, <code>File</code>, <code>Thread.Sleep</code> ni <code>Console.Beep</code>. La consola, el audio y el guardado entran por interfaces.</li>
+<li><b>Patrones.</b> State para el flujo del juego (Menú, Jugando, Pausa, Game Over, Victoria), más al menos dos entre Observer o bus de eventos, Command, Factory, Strategy, Componente y Service Locator.</li>
+<li><b>Sin preguntar por el tipo.</b> No queda ningún <code>if (tipo == "rapido")</code>: el comportamiento de cada bicho sale de su estrategia o de sus datos.</li>
+<li><b>Datos externos.</b> Tipos de bicho y oleadas se cargan desde JSON o desde un script Lua. Incluye un <b>cuarto tipo de bicho</b> agregado solo con datos (y, si hace falta, una estrategia nueva) para demostrarlo.</li>
+<li><b>Object pool.</b> Chispas y bichos se reutilizan. El dibujo no crea listas ni concatena cadenas en cada frame.</li>
+<li><b>Medición.</b> Tabla antes y después con, al menos, bytes asignados y número de recolecciones de basura en 60 segundos de juego (<code>GC.GetTotalAllocatedBytes</code>, <code>GC.CollectionCount</code>) y tiempo medio de frame.</li>
+<li><b>Pruebas.</b> Mínimo <b>8 pruebas unitarias</b> de la lógica que pasan con <code>dotnet test</code>, incluidas pruebas de la máquina de estados, del daño y del pool. El azar usa semilla para que el resultado sea repetible.</li>
+</ul>
+<p><b>Para aspirar al 5.0:</b> una repetición determinista (grabar los comandos de una partida y reproducirla con el mismo resultado) o comportamiento de bichos programado en Lua, y un cuarto de página que explique qué permitiría escalar el juego a 10 veces más contenido.</p>
+<h3>Ventana de trabajo: 2 semanas, 2 entregas internas</h3>
+<ul>
+<li><b>Semana 6 (28/12 a 03/01) · Estructura y patrones.</b> Separa el núcleo, implementa la máquina de estados, los eventos y la fábrica con datos externos. La sesión de esta semana incluye asesoría: trae el núcleo compilando. <i>Meta: el juego corre sobre la arquitectura nueva.</i></li>
+<li><b>Semana 7 (04/01 a 10/01) · Memoria, pruebas y entrega.</b> Mide, aplica el pool, vuelve a medir. Escribe las pruebas, documenta un bug depurado con método, redacta el PDF y sube todo a C Digital antes del 10/01. <i>Meta: puedes demostrar con cifras y pruebas que el rescate funcionó.</i></li>
+</ul>
+
+<h2>Pistas técnicas y errores comunes</h2>
+<ul>
+<li>Mide <b>antes</b> de optimizar. Sin la cifra del "antes" no hay comparación que entregar.</li>
+<li>Si una prueba necesita <code>Console</code> o esperar tiempo real, la lógica todavía está pegada a los detalles: inyecta un reloj y un azar falsos.</li>
+<li>Un objeto devuelto al pool debe reiniciar su estado. El bug clásico es la chispa que reaparece con la posición vieja.</li>
+<li>Desuscribe los eventos cuando un objeto vuelve al pool o termina el estado: si no, reacciona dos veces.</li>
+<li>Un Singleton para todo vuelve a pegar las piezas. Prefiere pasar dependencias por constructor.</li>
+<li>Nombres de prueba que cuentan una historia: <code>Tanque_MuereAlTercerGolpe</code>, <code>Pausa_NoAvanzaLosBichos</code>.</li>
+<li>Commits pequeños. Si algo se rompe, se puede volver atrás o buscar por mitades cuál commit lo dañó.</li>
+</ul>
+
+<h2>Producto(s) final(es) a entregar</h2>
+<p>Los productos se entregan exclusivamente en C Digital.</p>
+<h3>Producto principal: proyecto rescatado (repositorio Git, preferiblemente GitHub, o ZIP)</h3>
+<ul>
+<li>Compila y se juega con <code>dotnet run</code>; las pruebas pasan con <code>dotnet test</code>. Si se entrega en Unity: proyecto que abre sin errores y pruebas en Unity Test Framework.</li>
+<li>Estructura ordenada: núcleo, consola o presentación, datos y pruebas.</li>
+<li>Se puede ganar y perder. Incluye el cuarto tipo de bicho definido por datos.</li>
+<li>Un archivo <code>README</code> con cómo ejecutar, cómo correr las pruebas y cómo agregar un bicho nuevo.</li>
+</ul>
+<h3>Producto complementario: documento técnico (PDF, máximo 6 páginas de contenido)</h3>
+<ol>
+<li>Diagrama de módulos y de clases <b>final</b>, marcando el delta respecto al ACA 1: qué se agregó, qué se quitó y por qué.</li>
+<li>Patrones aplicados: dónde están, con fragmentos breves de código.</li>
+<li>Memoria y desempeño: tabla antes y después, cómo se midió y qué se cambió.</li>
+<li>Datos: cómo se define un bicho y una oleada, con un ejemplo.</li>
+<li>Pruebas y depuración: lista de pruebas y la historia de un bug real (cómo se reprodujo, hipótesis, experimento, arreglo y la prueba que ahora lo vigila).</li>
+<li>Reflexión final (media a una página): qué cambió del plano, qué fue lo más difícil, qué refactorizarías con dos semanas más.</li>
+</ol>
+<p><b>Socialización (semana 8):</b> demo de 5 minutos por equipo. No tiene nota propia; alimenta la coevaluación (4 %) y la autoevaluación (4 %).</p>
+
+<h2>Plantilla de medición (cópiala en tu documento)</h2>
+<table class="tbl"><thead><tr><th class="g">Métrica (60 s de juego, misma semilla)</th><th class="g">Antes</th><th class="g">Después</th><th class="g">Cómo se midió</th></tr></thead><tbody>
+<tr><td>Bytes asignados (<code>GC.GetTotalAllocatedBytes(true)</code> al final menos al inicio)</td><td></td><td></td><td></td></tr>
+<tr><td>Recolecciones gen 0 (<code>GC.CollectionCount(0)</code>)</td><td></td><td></td><td></td></tr>
+<tr><td>Tiempo medio de frame en ms (<code>Stopwatch</code>)</td><td></td><td></td><td></td></tr>
+<tr><td>Peor frame en ms</td><td></td><td></td><td></td></tr>
+</tbody></table>
+<p>Mide en modo <code>Release</code> (<code>dotnet run -c Release</code>), con la misma semilla y la misma secuencia de entrada en ambos casos. Repite tres veces y reporta el promedio.</p>
+<h2>Formato de entrega</h2>
+<ul>
+<li>PDF con nombre <code>ACA2_Apellido_Nombre.pdf</code> (en parejas: <code>ACA2_Apellido1_Apellido2.pdf</code>) y enlace al repositorio en la portada.</li>
+<li>Si entregas ZIP: sin carpetas <code>bin</code>, <code>obj</code> ni <code>Library</code> (Unity).</li>
+<li>Referencias y citas en APA 7.</li>
+</ul>
+<h2>Lista de chequeo antes de entregar</h2><table class="tbl lista"><tbody><tr><td class="box"></td><td>El núcleo no usa <code>Console</code>, <code>File</code>, <code>Thread.Sleep</code> ni <code>Console.Beep</code>.</td></tr><tr><td class="box"></td><td>State funciona como código, más al menos dos patrones con su fragmento en el documento.</td></tr><tr><td class="box"></td><td>No queda ningún <code>if</code> que pregunte por el tipo de bicho.</td></tr><tr><td class="box"></td><td>El cuarto bicho existe solo en datos (JSON o Lua) y aparece en el juego.</td></tr><tr><td class="box"></td><td>La tabla antes y después tiene cifras reales medidas con el mismo método.</td></tr><tr><td class="box"></td><td><code>dotnet test</code> pasa con 8 o más pruebas con nombres que cuentan una historia.</td></tr><tr><td class="box"></td><td>El informe del bug tiene reproducción, hipótesis, experimento, arreglo y prueba de regresión.</td></tr><tr><td class="box"></td><td>El README explica cómo ejecutar, cómo probar y cómo agregar un bicho.</td></tr><tr><td class="box"></td><td>El documento marca qué cambió frente al plano del ACA 1 y por qué.</td></tr></tbody></table>
+
+<h2>Rúbrica de evaluación</h2>
+<p>Cada criterio se califica de 1.0 a 5.0 según el descriptor alcanzado; la nota final es el promedio ponderado.</p>
+<table class="tbl"><thead><tr><th class="g" colspan="2">C1 · Arquitectura y patrones · Peso: 25 %</th></tr></thead><tbody>
+<tr><td class="pct">5.0</td><td>Núcleo sin dependencias de consola, disco ni audio; dependencias en una sola dirección. State como código más dos patrones bien aplicados. Ningún if por tipo. Una clase por archivo, sin lógica duplicada.</td></tr>
+<tr><td class="pct">4.0</td><td>Arquitectura sólida con una fuga menor (una llamada a consola en el núcleo, un patrón aplicado a medias).</td></tr>
+<tr><td class="pct">3.0</td><td>Código repartido en clases pero con acoplamiento alto, estados con banderas o condicionales por tipo que sobreviven.</td></tr>
+<tr><td class="pct">2.0</td><td>Código procedimental disfrazado de clases, o un objeto que concentra todo.</td></tr>
+<tr><td class="pct">1.0</td><td>No hay arquitectura reconocible o no compila.</td></tr>
+</tbody></table>
+<table class="tbl"><thead><tr><th class="g" colspan="2">C2 · Memoria y optimización · Peso: 20 %</th></tr></thead><tbody>
+<tr><td class="pct">5.0</td><td>Pool correcto para chispas y bichos, con reinicio de estado. Sin asignaciones evitables por frame. Tabla antes y después con método de medición claro y mejora evidente.</td></tr>
+<tr><td class="pct">4.0</td><td>Pool funcional y medición presente, con un defecto menor (queda una asignación por frame o falta una de las métricas).</td></tr>
+<tr><td class="pct">3.0</td><td>Hay pool pero sin medir, o se mide pero no se corrige lo medido.</td></tr>
+<tr><td class="pct">2.0</td><td>Optimización por intuición, sin cifras. Pool con errores (objetos que reaparecen con estado viejo).</td></tr>
+<tr><td class="pct">1.0</td><td>No hay gestión de memoria ni medición.</td></tr>
+</tbody></table>
+<table class="tbl"><thead><tr><th class="g" colspan="2">C3 · Contenido dirigido por datos y escalabilidad · Peso: 15 %</th></tr></thead><tbody>
+<tr><td class="pct">5.0</td><td>Bichos y oleadas en JSON o Lua, creados por una fábrica. El cuarto bicho se agregó sin tocar el núcleo. Los datos inválidos producen un mensaje claro.</td></tr>
+<tr><td class="pct">4.0</td><td>Datos externos funcionando; agregar el cuarto bicho exigió un cambio pequeño en el núcleo.</td></tr>
+<tr><td class="pct">3.0</td><td>Algunos valores salen de datos pero los tipos siguen cableados en el código.</td></tr>
+<tr><td class="pct">2.0</td><td>Los datos existen pero el juego no los usa de verdad.</td></tr>
+<tr><td class="pct">1.0</td><td>Todo el contenido sigue en el código.</td></tr>
+</tbody></table>
+<table class="tbl"><thead><tr><th class="g" colspan="2">C4 · Pruebas y depuración · Peso: 25 %</th></tr></thead><tbody>
+<tr><td class="pct">5.0</td><td>Ocho o más pruebas unitarias con buenos nombres que pasan, cubren estados, daño y pool, y usan reloj y azar controlados. Informe de un bug con reproducción, hipótesis, experimento, arreglo y prueba de regresión.</td></tr>
+<tr><td class="pct">4.0</td><td>Ocho pruebas que pasan con cobertura desigual, o informe de depuración algo descriptivo.</td></tr>
+<tr><td class="pct">3.0</td><td>Entre 4 y 7 pruebas, o pruebas triviales que no atraparían un error real. Depuración narrada sin método.</td></tr>
+<tr><td class="pct">2.0</td><td>Menos de 4 pruebas o pruebas que no pasan.</td></tr>
+<tr><td class="pct">1.0</td><td>Sin pruebas ni informe de depuración.</td></tr>
+</tbody></table>
+<table class="tbl"><thead><tr><th class="g" colspan="2">C5 · Documentación técnica y reflexión · Peso: 15 %</th></tr></thead><tbody>
+<tr><td class="pct">5.0</td><td>PDF con el delta frente al ACA 1 justificado, evidencia de patrones, cifras y pruebas. README que permite ejecutar y extender. Reflexión profunda y autocrítica.</td></tr>
+<tr><td class="pct">4.0</td><td>Documentación completa; reflexión algo descriptiva.</td></tr>
+<tr><td class="pct">3.0</td><td>Documentación parcial: falta el delta o las cifras. Reflexión superficial.</td></tr>
+<tr><td class="pct">2.0</td><td>Documentación mínima.</td></tr>
+<tr><td class="pct">1.0</td><td>No entrega documentación.</td></tr>
+</tbody></table>
+<p><b>Nota final ACA 2</b> = (C1 × 0.25) + (C2 × 0.20) + (C3 × 0.15) + (C4 × 0.25) + (C5 × 0.15)</p>
+<h2>Observaciones generales</h2>
+<ul>
+<li>Se conserva el equipo del ACA 1. Cada integrante indica en el README qué implementó.</li>
+<li>Quien no entregó el ACA 1 puede partir del juego original; el documento debe incluir entonces un plano breve (una página) antes del delta.</li>
+<li>La autoevaluación y la coevaluación se diligencian en C Digital entre el 28/12/2026 y el 10/01/2027.</li>
+</ul>
+</article>
+</main>
+<div id="foot"></div>
+<script src="../data/curso.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Atkinson+Hyperlegible+Next:wght@400..700&family=JetBrains+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+<title>Turno Nocturno · Arquitectura de Videojuegos</title>
+</head>
+<body data-page="docs" data-base="../../">
+<header class="mast" id="mast" data-meta="El paciente del curso · C# · consola · .NET 8" data-h1="Turno Nocturno" data-q="Un juego que funciona y está mal construido a propósito. Lo diagnosticas en el ACA 1 y lo rescatas en el ACA 2."></header>
+<main class="wrap">
+  <div class="cols"><div class="prose">
+    <h2>De qué va</h2>
+    <p>Eres <code>@</code>, un robot vigilante en una sala de servidores. Por el techo bajan bichos que quieren comerse los cables. Los espantas a chispazos antes de que lleguen al fondo. Sobrevive tres oleadas y amanece.</p>
+    <div class="tblwrap"><table class="tbl">
+      <thead><tr><th>Símbolo</th><th>Qué es</th><th>Comportamiento</th><th>Puntos</th></tr></thead>
+      <tbody>
+        <tr><td><code>b</code></td><td>Bicho lento</td><td>Baja despacio en línea recta. 1 de vida.</td><td>10</td></tr>
+        <tr><td><code>B</code></td><td>Bicho rápido</td><td>Baja rápido y se mueve de lado. 1 de vida.</td><td>20</td></tr>
+        <tr><td><code>M</code></td><td>Tanque</td><td>Baja muy despacio. Aguanta 3 chispas.</td><td>50</td></tr>
+        <tr><td><code>+</code></td><td>Batería</td><td>Cae cada cierto tiempo. Da una vida (máximo 5).</td><td>5</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Cómo ejecutarlo</h2>
+    <ol>
+      <li>Instala el <a href="https://dotnet.microsoft.com/download">SDK de .NET 8</a> (Windows, macOS o Linux).</li>
+      <li>Descarga los dos archivos del proyecto a una carpeta llamada <code>TurnoNocturno</code>: <a href="Program.cs" download>Program.cs</a> y <a href="TurnoNocturno.csproj" download>TurnoNocturno.csproj</a>.</li>
+      <li>Abre una terminal en esa carpeta y ejecuta:</li>
+    </ol>
+    <pre data-lang="C#" data-cap="Terminal">
+dotnet run</pre>
+    <p>Controles: flechas para mover, <kbd>Espacio</kbd> dispara una chispa, <kbd>P</kbd> pausa, <kbd>Enter</kbd> empieza o reinicia, <kbd>Esc</kbd> sale. Usa una ventana de terminal de al menos 80 columnas por 24 filas.</p>
+
+    <h2>Por qué está así</h2>
+    <p>Todo el juego vive en un archivo y casi todo en un método. Corre bien con 3 tipos de bicho y un programador. El curso trata de qué pasa cuando eso deja de ser cierto.</p>
+    <div class="note warn"><p><b>No lo arregles todavía.</b> Primero se diagnostica. En la semana 1 solo se juega y se anotan tres cosas que harían difícil agregar un bicho nuevo.</p></div>
+
+    <h2>Preguntas para leer el código</h2>
+    <ul>
+      <li>¿Cuántos lugares hay que tocar para agregar un bicho que vuela en zigzag?</li>
+      <li>¿Qué pasa con la velocidad del juego si cambias el <code>Thread.Sleep(50)</code> por <code>Thread.Sleep(10)</code>?</li>
+      <li>¿Puede el juego estar en pausa y en Game Over al mismo tiempo? ¿Qué lo impide?</li>
+      <li>¿Cómo probarías, sin jugar, que el tanque muere al tercer golpe?</li>
+      <li>¿Cuántos objetos nuevos se crean en cada vuelta del bucle solo para dibujar?</li>
+    </ul>
+  </div>
+  <aside class="side">
+    <h3>Ruta del rescate</h3>
+    <ol class="agenda">
+      <li><b>Sem. 1</b><span>Jugar y cazar olores.</span></li>
+      <li><b>Sem. 2</b><span>Lista de módulos con una responsabilidad cada uno.</span></li>
+      <li><b>Sem. 3</b><span>Máquina de estados y eventos. Abre el ACA 1.</span></li>
+      <li><b>Sem. 4</b><span>Fábrica y datos externos. Asesoría del plano.</span></li>
+      <li><b>Sem. 5</b><span>Medir memoria. Entrega del <a href="../../docs/aca1.html">ACA 1</a>.</span></li>
+      <li><b>Sem. 6</b><span>Núcleo separado y bus de eventos. Abre el ACA 2.</span></li>
+      <li><b>Sem. 7</b><span>Pruebas y depuración. Entrega del <a href="../../docs/aca2.html">ACA 2</a>.</span></li>
+      <li><b>Sem. 8</b><span>Demo del rescate.</span></li>
+    </ol>
+  </aside></div>
+</main>
+<div id="foot"></div>
+<script src="../../data/curso.js"></script>
+<script src="../../assets/app.js"></script>
+</body>
+</html>

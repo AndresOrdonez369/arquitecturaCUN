@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Atkinson+Hyperlegible+Next:wght@400..700&family=JetBrains+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<title>Arquitectura de Videojuegos · CUN</title>
+<meta name="description" content="Curso de Arquitectura de Videojuegos: 8 semanas de slides interactivas, código en C#, quices y proyecto de rescate de un juego espagueti.">
+</head>
+<body data-page="hub">
+<header class="mast" id="mast"></header>
+<div id="rail"></div>
+<main class="wrap">
+  <section id="semana" aria-live="polite"></section>
+
+  <h2 id="jugadas">Las 8 jugadas del curso</h2>
+  <p>Cada semana responde una sola pregunta, con una analogía que la hace fácil de recordar. El orden importa: cada jugada usa la anterior.</p>
+  <ol class="plays" id="plays"></ol>
+
+  <h2 id="evaluacion">Cómo se evalúa</h2>
+  <p>Tres cortes. Los quices de cada clase no dan nota; el parcial, los dos ACA y la auto y coevaluación sí.</p>
+  <div class="tblwrap"><table class="tbl">
+    <thead><tr><th>Corte</th><th>Qué se evalúa</th><th>Semanas</th><th>Abre</th><th>Cierra</th><th>Reporte de notas</th><th>Peso</th></tr></thead>
+    <tbody>
+      <tr><td>I</td><td>Quiz-parcial (se presenta en la sesión de la semana 2)</td><td>1 y 2</td><td>23/11/2026</td><td>06/12/2026</td><td>09/12/2026</td><td class="pct">30 %</td></tr>
+      <tr><td>II</td><td><a href="docs/aca1.html">ACA 1</a>: diagnóstico y plano de rescate de "Turno Nocturno"</td><td>3 a 5</td><td>07/12/2026</td><td>27/12/2026</td><td>30/12/2026</td><td class="pct">30 %</td></tr>
+      <tr><td>III</td><td><a href="docs/aca2.html">ACA 2</a>: el rescate implementado, medido y probado</td><td>6 y 7</td><td>28/12/2026</td><td>10/01/2027</td><td>13/01/2027</td><td class="pct">32 %</td></tr>
+      <tr><td>III</td><td>Autoevaluación</td><td>7 y 8</td><td>28/12/2026</td><td>10/01/2027</td><td>13/01/2027</td><td class="pct">4 %</td></tr>
+      <tr><td>III</td><td>Coevaluación</td><td>7 y 8</td><td>28/12/2026</td><td>10/01/2027</td><td>13/01/2027</td><td class="pct">4 %</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="documentos">Documentos</h2>
+  <ul class="docs">
+    <li><a href="plan.html"><b>Plan del curso</b><span>Las 8 semanas, la estrategia para enseñar y cómo se conecta con el syllabus.</span></a></li>
+    <li><a href="quiz.html?s=diag"><b>Quiz de conceptos previos</b><span>10 preguntas para la semana 1, versión interactiva.</span></a></li>
+    <li><a href="docs/quiz-diagnostico.html"><b>Quiz diagnóstico para imprimir</b><span>El mismo quiz en formato de documento.</span></a></li>
+    <li><a href="docs/aca1.html"><b>Consigna ACA 1</b><span>Diagnóstico y plano de rescate. Cierra el 27/12/2026.</span></a></li>
+    <li><a href="docs/aca2.html"><b>Consigna ACA 2</b><span>El rescate implementado. Cierra el 10/01/2027.</span></a></li>
+    <li><a href="docs/banco-preguntas.html"><b>Banco de preguntas</b><span>Los quices de las 8 clases con respuesta y explicación.</span></a></li>
+    <li><a href="proyecto/TurnoNocturno/README.html"><b>Turno Nocturno</b><span>El juego espagueti que vamos a rescatar durante el curso.</span></a></li>
+  </ul>
+
+  <h3 id="pdf" style="margin:2rem 0 .8rem">Descargas en PDF para C Digital</h3>
+  <ul class="docs pdfs">
+    <li><a href="entregables/ACA1-Diagnostico-y-plano-de-rescate.pdf" download><b>ACA 1 · PDF</b><span>Consigna, lista de chequeo y rúbrica.</span></a></li>
+    <li><a href="entregables/ACA2-Rescate-implementado.pdf" download><b>ACA 2 · PDF</b><span>Consigna, plantilla de medición y rúbrica.</span></a></li>
+    <li><a href="entregables/Quiz-diagnostico-estudiante.pdf" download><b>Quiz diagnóstico · estudiante</b><span>10 preguntas y hoja de respuestas.</span></a></li>
+    <li><a href="entregables/Quiz-diagnostico-con-respuestas.pdf" download><b>Quiz diagnóstico · docente</b><span>Con clave, explicaciones y guía para leer el resultado.</span></a></li>
+    <li><a href="entregables/Banco-de-preguntas-con-respuestas.pdf" download><b>Banco de preguntas · docente</b><span>Todas las preguntas de clase con respuesta.</span></a></li>
+    <li><a href="entregables/Banco-de-preguntas-estudiante.pdf" download><b>Banco de preguntas · estudiante</b><span>Para repasar antes del quiz-parcial.</span></a></li>
+    <li><a href="entregables/Plan-del-curso.pdf" download><b>Plan del curso · PDF</b><span>Semanas, estrategia, evaluación y bibliografía.</span></a></li>
+  </ul>
+</main>
+<div id="foot"></div>
+<script src="data/curso.js"></script>
+<script src="assets/fig.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

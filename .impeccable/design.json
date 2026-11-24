@@ -1,0 +1,536 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-23T02:37:46+00:00",
+  "title": "Design System: Arquitectura de Videojuegos",
+  "extensions": {
+    "colorMeta": {
+      "graphite-floor": {
+        "role": "neutral",
+        "displayName": "Suelo grafito",
+        "canonical": "oklch(18.5% 0.002 285)",
+        "tonalRamp": [
+          "oklch(15% 0.004 285)",
+          "oklch(25% 0.004 285)",
+          "oklch(35% 0.004 285)",
+          "oklch(45% 0.004 285)",
+          "oklch(55% 0.004 285)",
+          "oklch(65% 0.004 285)",
+          "oklch(80% 0.004 285)",
+          "oklch(95% 0.004 285)"
+        ]
+      },
+      "graphite-deep": {
+        "role": "neutral",
+        "displayName": "Grafito profundo",
+        "canonical": "oklch(16% 0.002 285)",
+        "tonalRamp": [
+          "oklch(15% 0.004 285)",
+          "oklch(25% 0.004 285)",
+          "oklch(35% 0.004 285)",
+          "oklch(45% 0.004 285)",
+          "oklch(55% 0.004 285)",
+          "oklch(65% 0.004 285)",
+          "oklch(80% 0.004 285)",
+          "oklch(95% 0.004 285)"
+        ]
+      },
+      "slate-node": {
+        "role": "neutral",
+        "displayName": "Pizarra de nodo",
+        "canonical": "oklch(21% 0.003 285)",
+        "tonalRamp": [
+          "oklch(15% 0.004 285)",
+          "oklch(25% 0.004 285)",
+          "oklch(35% 0.004 285)",
+          "oklch(45% 0.004 285)",
+          "oklch(55% 0.004 285)",
+          "oklch(65% 0.004 285)",
+          "oklch(80% 0.004 285)",
+          "oklch(95% 0.004 285)"
+        ]
+      },
+      "slate-node-head": {
+        "role": "neutral",
+        "displayName": "Encabezado de nodo",
+        "canonical": "oklch(24% 0.003 285)",
+        "tonalRamp": [
+          "oklch(15% 0.004 285)",
+          "oklch(25% 0.004 285)",
+          "oklch(35% 0.004 285)",
+          "oklch(45% 0.004 285)",
+          "oklch(55% 0.004 285)",
+          "oklch(65% 0.004 285)",
+          "oklch(80% 0.004 285)",
+          "oklch(95% 0.004 285)"
+        ]
+      },
+      "slate-node-raised": {
+        "role": "neutral",
+        "displayName": "Nodo elevado",
+        "canonical": "oklch(28.5% 0.004 285)",
+        "tonalRamp": [
+          "oklch(15% 0.004 285)",
+          "oklch(25% 0.004 285)",
+          "oklch(35% 0.004 285)",
+          "oklch(45% 0.004 285)",
+          "oklch(55% 0.004 285)",
+          "oklch(65% 0.004 285)",
+          "oklch(80% 0.004 285)",
+          "oklch(95% 0.004 285)"
+        ]
+      },
+      "edge": {
+        "role": "neutral",
+        "displayName": "Arista",
+        "canonical": "oklch(32% 0.005 285)",
+        "tonalRamp": [
+          "oklch(15% 0.004 285)",
+          "oklch(25% 0.004 285)",
+          "oklch(35% 0.004 285)",
+          "oklch(45% 0.004 285)",
+          "oklch(55% 0.004 285)",
+          "oklch(65% 0.004 285)",
+          "oklch(80% 0.004 285)",
+          "oklch(95% 0.004 285)"
+        ]
+      },
+      "edge-strong": {
+        "role": "neutral",
+        "displayName": "Arista fuerte",
+        "canonical": "oklch(41% 0.008 285)",
+        "tonalRamp": [
+          "oklch(15% 0.004 285)",
+          "oklch(25% 0.004 285)",
+          "oklch(35% 0.004 285)",
+          "oklch(45% 0.004 285)",
+          "oklch(55% 0.004 285)",
+          "oklch(65% 0.004 285)",
+          "oklch(80% 0.004 285)",
+          "oklch(95% 0.004 285)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Texto",
+        "canonical": "oklch(94% 0 0)",
+        "tonalRamp": [
+          "oklch(15% 0.004 285)",
+          "oklch(25% 0.004 285)",
+          "oklch(35% 0.004 285)",
+          "oklch(45% 0.004 285)",
+          "oklch(55% 0.004 285)",
+          "oklch(65% 0.004 285)",
+          "oklch(80% 0.004 285)",
+          "oklch(95% 0.004 285)"
+        ]
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Texto secundario",
+        "canonical": "oklch(78% 0.006 285)",
+        "tonalRamp": [
+          "oklch(15% 0.004 285)",
+          "oklch(25% 0.004 285)",
+          "oklch(35% 0.004 285)",
+          "oklch(45% 0.004 285)",
+          "oklch(55% 0.004 285)",
+          "oklch(65% 0.004 285)",
+          "oklch(80% 0.004 285)",
+          "oklch(95% 0.004 285)"
+        ]
+      },
+      "text-faint": {
+        "role": "neutral",
+        "displayName": "Texto tenue",
+        "canonical": "oklch(65% 0.008 285)",
+        "tonalRamp": [
+          "oklch(15% 0.004 285)",
+          "oklch(25% 0.004 285)",
+          "oklch(35% 0.004 285)",
+          "oklch(45% 0.004 285)",
+          "oklch(55% 0.004 285)",
+          "oklch(65% 0.004 285)",
+          "oklch(80% 0.004 285)",
+          "oklch(95% 0.004 285)"
+        ]
+      },
+      "signal-amber": {
+        "role": "primary",
+        "displayName": "Ámbar de señal",
+        "canonical": "oklch(76% 0.13 75)",
+        "tonalRamp": [
+          "oklch(15% 0.13 75)",
+          "oklch(25% 0.13 75)",
+          "oklch(35% 0.13 75)",
+          "oklch(45% 0.13 75)",
+          "oklch(55% 0.13 75)",
+          "oklch(65% 0.13 75)",
+          "oklch(80% 0.13 75)",
+          "oklch(95% 0.13 75)"
+        ]
+      },
+      "signal-amber-hover": {
+        "role": "primary",
+        "displayName": "Ámbar encendido",
+        "canonical": "oklch(80% 0.12 75)",
+        "tonalRamp": [
+          "oklch(15% 0.12 75)",
+          "oklch(25% 0.12 75)",
+          "oklch(35% 0.12 75)",
+          "oklch(45% 0.12 75)",
+          "oklch(55% 0.12 75)",
+          "oklch(65% 0.12 75)",
+          "oklch(80% 0.12 75)",
+          "oklch(95% 0.12 75)"
+        ]
+      },
+      "amber-ink": {
+        "role": "primary",
+        "displayName": "Tinta ámbar",
+        "canonical": "oklch(17% 0.015 75)",
+        "tonalRamp": [
+          "oklch(15% 0.015 75)",
+          "oklch(25% 0.015 75)",
+          "oklch(35% 0.015 75)",
+          "oklch(45% 0.015 75)",
+          "oklch(55% 0.015 75)",
+          "oklch(65% 0.015 75)",
+          "oklch(80% 0.015 75)",
+          "oklch(95% 0.015 75)"
+        ]
+      },
+      "data-teal": {
+        "role": "secondary",
+        "displayName": "Teal de datos",
+        "canonical": "oklch(70% 0.10 178)",
+        "tonalRamp": [
+          "oklch(15% 0.1 178)",
+          "oklch(25% 0.1 178)",
+          "oklch(35% 0.1 178)",
+          "oklch(45% 0.1 178)",
+          "oklch(55% 0.1 178)",
+          "oklch(65% 0.1 178)",
+          "oklch(80% 0.1 178)",
+          "oklch(95% 0.1 178)"
+        ]
+      },
+      "call-slate": {
+        "role": "secondary",
+        "displayName": "Azul pizarra de llamada",
+        "canonical": "oklch(71% 0.09 270)",
+        "tonalRamp": [
+          "oklch(15% 0.09 270)",
+          "oklch(25% 0.09 270)",
+          "oklch(35% 0.09 270)",
+          "oklch(45% 0.09 270)",
+          "oklch(55% 0.09 270)",
+          "oklch(65% 0.09 270)",
+          "oklch(80% 0.09 270)",
+          "oklch(95% 0.09 270)"
+        ]
+      },
+      "fault-rose": {
+        "role": "tertiary",
+        "displayName": "Rojo apagado",
+        "canonical": "oklch(66% 0.14 27)",
+        "tonalRamp": [
+          "oklch(15% 0.14 27)",
+          "oklch(25% 0.14 27)",
+          "oklch(35% 0.14 27)",
+          "oklch(45% 0.14 27)",
+          "oklch(55% 0.14 27)",
+          "oklch(65% 0.14 27)",
+          "oklch(80% 0.14 27)",
+          "oklch(95% 0.14 27)"
+        ]
+      },
+      "pass-green": {
+        "role": "tertiary",
+        "displayName": "Verde de acierto",
+        "canonical": "oklch(73% 0.11 155)",
+        "tonalRamp": [
+          "oklch(15% 0.11 155)",
+          "oklch(25% 0.11 155)",
+          "oklch(35% 0.11 155)",
+          "oklch(45% 0.11 155)",
+          "oklch(55% 0.11 155)",
+          "oklch(65% 0.11 155)",
+          "oklch(80% 0.11 155)",
+          "oklch(95% 0.11 155)"
+        ]
+      },
+      "pattern-violet": {
+        "role": "tertiary",
+        "displayName": "Violeta de patrón",
+        "canonical": "oklch(70% 0.12 295)",
+        "tonalRamp": [
+          "oklch(15% 0.12 295)",
+          "oklch(25% 0.12 295)",
+          "oklch(35% 0.12 295)",
+          "oklch(45% 0.12 295)",
+          "oklch(55% 0.12 295)",
+          "oklch(65% 0.12 295)",
+          "oklch(80% 0.12 295)",
+          "oklch(95% 0.12 295)"
+        ]
+      },
+      "link": {
+        "role": "secondary",
+        "displayName": "Enlace",
+        "canonical": "oklch(80% 0.07 268)",
+        "tonalRamp": [
+          "oklch(15% 0.07 268)",
+          "oklch(25% 0.07 268)",
+          "oklch(35% 0.07 268)",
+          "oklch(45% 0.07 268)",
+          "oklch(55% 0.07 268)",
+          "oklch(65% 0.07 268)",
+          "oklch(80% 0.07 268)",
+          "oklch(95% 0.07 268)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Título del hub y de páginas de clase; Archivo ensanchado 116–118 %."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Encabezados de sección con 4.5rem de aire arriba."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de nodo, semana, tarjeta y concepto."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Prosa de estudio a 70ch máximo."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Encabezado de nodo y panel en mono mayúscula; números y pines."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Bloques de código con pestañas por lenguaje."
+      },
+      "slide-title": {
+        "displayName": "Slide title",
+        "purpose": "Título dentro del lienzo de 1600×900; portada a 100px."
+      },
+      "slide-body": {
+        "displayName": "Slide body",
+        "purpose": "Texto base del lienzo de slides."
+      }
+    },
+    "shadows": [
+      {
+        "name": "node-float",
+        "value": "0 18px 40px -22px rgba(0,0,0,.8)",
+        "purpose": "Nodos del hub sobre el suelo grafito."
+      },
+      {
+        "name": "popover",
+        "value": "0 24px 50px -20px rgba(0,0,0,.9)",
+        "purpose": "Notas del docente en el mazo."
+      },
+      {
+        "name": "route-canvas",
+        "value": "0 30px 60px -30px rgba(0,0,0,.9)",
+        "purpose": "Marco del grafo de 8 semanas."
+      },
+      {
+        "name": "signal-edge",
+        "value": "inset 0 -2px 0 #e2a54a",
+        "purpose": "Filo de señal: semana actual en el riel; inset 0 3px 0 <señal> marca tipo en el mapa de analogía."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16, 1, .3, 1)",
+        "purpose": "Curva por defecto: hover, llegadas, revelado por pasos."
+      },
+      {
+        "name": "wire-draw",
+        "value": "stroke-dashoffset .7s cubic-bezier(.65, 0, .35, 1)",
+        "purpose": "Cables que se dibujan al aparecer."
+      },
+      {
+        "name": "enfoca",
+        "value": ".7s; from opacity 0, translateY(16px), blur(6px)",
+        "purpose": "Entrada del título de slide."
+      },
+      {
+        "name": "llega",
+        "value": ".65s; delay .16s + i * .08s; from opacity 0, translateY(22px)",
+        "purpose": "Bloques de slide escalonados."
+      },
+      {
+        "name": "paso",
+        "value": "opacity .5s, transform .6s, filter .5s; visto = opacity .5",
+        "purpose": "Revelado por pasos: lo nuevo nítido, lo visto atenuado."
+      },
+      {
+        "name": "graph-build",
+        "value": "380ms por capa; pulso 2.2–3s por cable",
+        "purpose": "Grafo de temas que se arma solo."
+      },
+      {
+        "name": "rise",
+        "value": ".45s; from opacity .3, translateY(8px)",
+        "purpose": "Explicación de quiz y notas."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "hero-stack",
+        "value": "1120px"
+      },
+      {
+        "name": "tablet",
+        "value": "900px"
+      },
+      {
+        "name": "topbar-wrap",
+        "value": "700px"
+      },
+      {
+        "name": "graph-to-list",
+        "value": "640px (ancho del contenedor)"
+      },
+      {
+        "name": "phone",
+        "value": "560px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal: abrir la clase, abrir slides, siguiente semana.",
+      "html": "<button class=\"ds-btn\">Abrir la clase <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></button>",
+      "css": ":host{--bg:#121213;--bg-2:#0d0d0e;--surface:#19191b;--surface-2:#212123;--surface-3:#2b2b2e;--edge:#323235;--edge-2:#4a4a4f;--text:#ececec;--text-2:#b9b9bd;--text-3:#909095;--amber:#e2a54a;--amber-ink:#17120a;--amber-soft:rgba(226,165,74,.13);--teal:#4db5a4;--teal-soft:rgba(77,181,164,.13);--slate:#86a0dc;--slate-soft:rgba(134,160,220,.13);--rose:#e0706a;--rose-soft:rgba(224,112,106,.13);--green:#66bb87;--green-soft:rgba(102,187,135,.13);--r:10px;--display:\"Archivo\",\"Arial Narrow\",sans-serif;--body:\"Atkinson Hyperlegible Next\",\"Segoe UI\",system-ui,sans-serif;--mono:\"JetBrains Mono\",ui-monospace,Consolas,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-btn{display:inline-flex;align-items:center;gap:.55rem;font:700 .98rem/1 var(--body);padding:.8rem 1.15rem;border-radius:8px;border:1px solid var(--amber);background:var(--amber);color:var(--amber-ink);cursor:pointer;transition:transform .25s var(--ease),background .2s,border-color .2s}.ds-btn:hover{transform:translateY(-1px);background:#edb662}.ds-btn:active{transform:none}.ds-btn:focus-visible{outline:2px solid var(--amber);outline-offset:3px}"
+    },
+    {
+      "name": "Botón secundario",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Acciones de apoyo: código, quiz, semana anterior.",
+      "html": "<button class=\"ds-btn-alt\">Código</button>",
+      "css": ":host{--bg:#121213;--bg-2:#0d0d0e;--surface:#19191b;--surface-2:#212123;--surface-3:#2b2b2e;--edge:#323235;--edge-2:#4a4a4f;--text:#ececec;--text-2:#b9b9bd;--text-3:#909095;--amber:#e2a54a;--amber-ink:#17120a;--amber-soft:rgba(226,165,74,.13);--teal:#4db5a4;--teal-soft:rgba(77,181,164,.13);--slate:#86a0dc;--slate-soft:rgba(134,160,220,.13);--rose:#e0706a;--rose-soft:rgba(224,112,106,.13);--green:#66bb87;--green-soft:rgba(102,187,135,.13);--r:10px;--display:\"Archivo\",\"Arial Narrow\",sans-serif;--body:\"Atkinson Hyperlegible Next\",\"Segoe UI\",system-ui,sans-serif;--mono:\"JetBrains Mono\",ui-monospace,Consolas,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-btn-alt{display:inline-flex;align-items:center;gap:.55rem;font:700 .98rem/1 var(--body);padding:.8rem 1.15rem;border-radius:8px;border:1px solid var(--edge-2);background:var(--surface-2);color:var(--text);cursor:pointer;transition:transform .25s var(--ease),background .2s,border-color .2s}.ds-btn-alt:hover{transform:translateY(-1px);background:var(--surface-3);border-color:var(--text-3);color:#fff}.ds-btn-alt:focus-visible{outline:2px solid var(--amber);outline-offset:3px}"
+    },
+    {
+      "name": "Nodo",
+      "kind": "card",
+      "refersTo": "node",
+      "description": "Contenedor con tipo: encabezado mono tintado, pin y cuerpo de pizarra.",
+      "html": "<div class=\"ds-node\"><div class=\"ds-nh\"><span class=\"ds-pin\"></span>Esta semana</div><div class=\"ds-nb\"><h3>Game loop y capas</h3><p>¿Qué pasa decenas de veces por segundo?</p></div></div>",
+      "css": ":host{--bg:#121213;--bg-2:#0d0d0e;--surface:#19191b;--surface-2:#212123;--surface-3:#2b2b2e;--edge:#323235;--edge-2:#4a4a4f;--text:#ececec;--text-2:#b9b9bd;--text-3:#909095;--amber:#e2a54a;--amber-ink:#17120a;--amber-soft:rgba(226,165,74,.13);--teal:#4db5a4;--teal-soft:rgba(77,181,164,.13);--slate:#86a0dc;--slate-soft:rgba(134,160,220,.13);--rose:#e0706a;--rose-soft:rgba(224,112,106,.13);--green:#66bb87;--green-soft:rgba(102,187,135,.13);--r:10px;--display:\"Archivo\",\"Arial Narrow\",sans-serif;--body:\"Atkinson Hyperlegible Next\",\"Segoe UI\",system-ui,sans-serif;--mono:\"JetBrains Mono\",ui-monospace,Consolas,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-node{--tipo:var(--amber);--tipo-soft:var(--amber-soft);background:var(--surface);border:1px solid var(--edge);border-radius:var(--r);box-shadow:0 18px 40px -22px rgba(0,0,0,.8);max-width:22rem;color:var(--text);font:400 1rem/1.6 var(--body)}.ds-nh{display:flex;align-items:center;gap:.55rem;padding:.6rem 1rem;border-bottom:1px solid var(--edge);background:linear-gradient(var(--tipo-soft),var(--tipo-soft)),var(--surface-2);border-radius:var(--r) var(--r) 0 0;color:var(--tipo);font:700 .78rem/1 var(--mono);letter-spacing:.04em;text-transform:uppercase}.ds-pin{width:.62em;height:.62em;border-radius:50%;border:2px solid currentColor;background:currentColor}.ds-nb{padding:1rem 1.15rem 1.15rem}.ds-nb h3{margin:0 0 .4rem;font:750 1.18rem/1.08 var(--display);font-stretch:106%;color:#fff}.ds-nb p{margin:0;color:var(--text-2)}"
+    },
+    {
+      "name": "Etiqueta",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Entrega o fecha; pin hueco, relleno si es la actual.",
+      "html": "<span class=\"ds-tag\">ACA 1 · 30 %</span> <span class=\"ds-tag ds-c\">Quiz-parcial · 30 %</span>",
+      "css": ":host{--bg:#121213;--bg-2:#0d0d0e;--surface:#19191b;--surface-2:#212123;--surface-3:#2b2b2e;--edge:#323235;--edge-2:#4a4a4f;--text:#ececec;--text-2:#b9b9bd;--text-3:#909095;--amber:#e2a54a;--amber-ink:#17120a;--amber-soft:rgba(226,165,74,.13);--teal:#4db5a4;--teal-soft:rgba(77,181,164,.13);--slate:#86a0dc;--slate-soft:rgba(134,160,220,.13);--rose:#e0706a;--rose-soft:rgba(224,112,106,.13);--green:#66bb87;--green-soft:rgba(102,187,135,.13);--r:10px;--display:\"Archivo\",\"Arial Narrow\",sans-serif;--body:\"Atkinson Hyperlegible Next\",\"Segoe UI\",system-ui,sans-serif;--mono:\"JetBrains Mono\",ui-monospace,Consolas,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-tag{display:inline-flex;align-items:center;gap:.4rem;font:700 .78rem/1 var(--body);padding:.38rem .55rem;border-radius:6px;border:1px solid var(--edge-2);color:var(--text-2);background:var(--surface)}.ds-tag::before{content:\"\";width:.45rem;height:.45rem;border-radius:50%;border:1.5px solid currentColor}.ds-c{color:var(--amber);border-color:rgba(226,165,74,.55);background:var(--amber-soft)}.ds-c::before{background:currentColor}"
+    },
+    {
+      "name": "Opción de quiz",
+      "kind": "input",
+      "refersTo": "quiz-option",
+      "description": "Respuesta seleccionable; estado como marca además de color.",
+      "html": "<div class=\"ds-opts\"><button class=\"ds-opt\"><span class=\"ds-l\">A</span>Dibujar dentro de Update</button><button class=\"ds-opt ds-ok\"><span class=\"ds-l\">B</span>Multiplicar por delta time</button><button class=\"ds-opt ds-no\"><span class=\"ds-l\">C</span>Subir los fps</button></div>",
+      "css": ":host{--bg:#121213;--bg-2:#0d0d0e;--surface:#19191b;--surface-2:#212123;--surface-3:#2b2b2e;--edge:#323235;--edge-2:#4a4a4f;--text:#ececec;--text-2:#b9b9bd;--text-3:#909095;--amber:#e2a54a;--amber-ink:#17120a;--amber-soft:rgba(226,165,74,.13);--teal:#4db5a4;--teal-soft:rgba(77,181,164,.13);--slate:#86a0dc;--slate-soft:rgba(134,160,220,.13);--rose:#e0706a;--rose-soft:rgba(224,112,106,.13);--green:#66bb87;--green-soft:rgba(102,187,135,.13);--r:10px;--display:\"Archivo\",\"Arial Narrow\",sans-serif;--body:\"Atkinson Hyperlegible Next\",\"Segoe UI\",system-ui,sans-serif;--mono:\"JetBrains Mono\",ui-monospace,Consolas,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-opts{display:grid;gap:.5rem;max-width:30rem}.ds-opt{display:flex;gap:.8rem;align-items:center;text-align:left;font:400 1rem/1.4 var(--body);color:var(--text);background:var(--surface-2);border:1px solid var(--edge);border-radius:8px;padding:.7rem .9rem;cursor:pointer;transition:transform .2s var(--ease),background .2s,border-color .2s}.ds-opt:hover{transform:translateX(3px);border-color:var(--amber);background:var(--surface-3)}.ds-opt:focus-visible{outline:2px solid var(--amber);outline-offset:3px}.ds-l{flex:none;width:1.75rem;height:1.75rem;border-radius:50%;border:2px solid var(--text-3);color:var(--text-2);display:grid;place-items:center;font:700 .82rem/1 var(--mono)}.ds-ok{background:var(--green-soft);border-color:var(--green)}.ds-ok .ds-l{border-color:var(--green);background:var(--green);color:#0d1a12}.ds-ok::after{content:\"correcta\";margin-left:auto;font:700 .75rem/1 var(--mono);color:var(--green)}.ds-no{background:var(--rose-soft);border-color:var(--rose);text-decoration:line-through;text-decoration-color:rgba(224,112,106,.7)}.ds-no .ds-l{border-color:var(--rose);background:var(--rose);color:#1d0c0b}"
+    },
+    {
+      "name": "Riel de semanas",
+      "kind": "nav",
+      "refersTo": "week-rail-item",
+      "description": "Navegación de 8 semanas: hecha teal, actual ámbar.",
+      "html": "<nav class=\"ds-rail\"><a class=\"ds-done\"><span class=\"ds-n\">1</span><span class=\"ds-t\">Costo del cambio</span></a><a class=\"ds-cur\"><span class=\"ds-n\">2</span><span class=\"ds-t\">Game loop</span></a><a><span class=\"ds-n\">3</span><span class=\"ds-t\">Componentes</span></a><a><span class=\"ds-n\">4</span><span class=\"ds-t\">Patrones I</span></a></nav>",
+      "css": ":host{--bg:#121213;--bg-2:#0d0d0e;--surface:#19191b;--surface-2:#212123;--surface-3:#2b2b2e;--edge:#323235;--edge-2:#4a4a4f;--text:#ececec;--text-2:#b9b9bd;--text-3:#909095;--amber:#e2a54a;--amber-ink:#17120a;--amber-soft:rgba(226,165,74,.13);--teal:#4db5a4;--teal-soft:rgba(77,181,164,.13);--slate:#86a0dc;--slate-soft:rgba(134,160,220,.13);--rose:#e0706a;--rose-soft:rgba(224,112,106,.13);--green:#66bb87;--green-soft:rgba(102,187,135,.13);--r:10px;--display:\"Archivo\",\"Arial Narrow\",sans-serif;--body:\"Atkinson Hyperlegible Next\",\"Segoe UI\",system-ui,sans-serif;--mono:\"JetBrains Mono\",ui-monospace,Consolas,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-rail{display:grid;grid-template-columns:repeat(4,1fr);background:rgba(13,13,14,.94);border-bottom:1px solid var(--edge);font-family:var(--body)}.ds-rail a{display:block;padding:.65rem .7rem .7rem;color:var(--text-2);border-left:1px solid var(--edge);cursor:pointer;transition:background .2s,color .2s}.ds-rail a:hover{background:var(--surface);color:#fff}.ds-n{font:700 .95rem/1 var(--mono);color:var(--text);display:flex;align-items:center;gap:.45rem}.ds-n::before{content:\"\";width:.55rem;height:.55rem;border-radius:50%;border:2px solid var(--text-3)}.ds-t{display:block;font-size:.78rem;margin-top:.3rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ds-done .ds-n::before{border-color:var(--teal);background:var(--teal)}.ds-cur{background:var(--amber-soft);color:#fff;box-shadow:inset 0 -2px 0 var(--amber)}.ds-cur .ds-n::before{border-color:var(--amber);background:var(--amber)}"
+    },
+    {
+      "name": "Caja de código",
+      "kind": "custom",
+      "refersTo": "code-box",
+      "description": "Código con pestañas por lenguaje; variantes mala y buena.",
+      "html": "<div class=\"ds-code\"><div class=\"ds-tabs\"><button aria-selected=\"true\">C#</button><button>Unity</button><button>Lua</button></div><pre><span class=\"ds-k\">void</span> Update(<span class=\"ds-k\">float</span> dt) {\n  x += v * dt; <span class=\"ds-cm\">// igual a 30 o 144 fps</span>\n}</pre></div>",
+      "css": ":host{--bg:#121213;--bg-2:#0d0d0e;--surface:#19191b;--surface-2:#212123;--surface-3:#2b2b2e;--edge:#323235;--edge-2:#4a4a4f;--text:#ececec;--text-2:#b9b9bd;--text-3:#909095;--amber:#e2a54a;--amber-ink:#17120a;--amber-soft:rgba(226,165,74,.13);--teal:#4db5a4;--teal-soft:rgba(77,181,164,.13);--slate:#86a0dc;--slate-soft:rgba(134,160,220,.13);--rose:#e0706a;--rose-soft:rgba(224,112,106,.13);--green:#66bb87;--green-soft:rgba(102,187,135,.13);--r:10px;--display:\"Archivo\",\"Arial Narrow\",sans-serif;--body:\"Atkinson Hyperlegible Next\",\"Segoe UI\",system-ui,sans-serif;--mono:\"JetBrains Mono\",ui-monospace,Consolas,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-code{border:1px solid var(--edge);border-radius:var(--r);overflow:hidden;background:var(--bg-2);max-width:30rem}.ds-tabs{display:flex;background:var(--surface);border-bottom:1px solid var(--edge)}.ds-tabs button{font:600 .82rem/1 var(--mono);color:var(--text-3);background:none;border:0;padding:.8rem 1.05rem;cursor:pointer;border-bottom:2px solid transparent}.ds-tabs button:hover{color:var(--text)}.ds-tabs button[aria-selected=\"true\"]{color:#fff;border-color:var(--amber)}.ds-code pre{margin:0;padding:.95rem 1.2rem;color:#dfe3ea;font:400 .88rem/1.65 var(--mono)}.ds-k{color:#d8a0e8}.ds-cm{color:#6f7887;font-style:italic}"
+    },
+    {
+      "name": "Nota clave",
+      "kind": "card",
+      "refersTo": "node",
+      "description": "Recuadro de idea clave en ámbar suave; variante aviso en rojo suave.",
+      "html": "<div class=\"ds-note\"><b>Idea clave.</b> Dibujar nunca cambia el estado.</div>",
+      "css": ":host{--bg:#121213;--bg-2:#0d0d0e;--surface:#19191b;--surface-2:#212123;--surface-3:#2b2b2e;--edge:#323235;--edge-2:#4a4a4f;--text:#ececec;--text-2:#b9b9bd;--text-3:#909095;--amber:#e2a54a;--amber-ink:#17120a;--amber-soft:rgba(226,165,74,.13);--teal:#4db5a4;--teal-soft:rgba(77,181,164,.13);--slate:#86a0dc;--slate-soft:rgba(134,160,220,.13);--rose:#e0706a;--rose-soft:rgba(224,112,106,.13);--green:#66bb87;--green-soft:rgba(102,187,135,.13);--r:10px;--display:\"Archivo\",\"Arial Narrow\",sans-serif;--body:\"Atkinson Hyperlegible Next\",\"Segoe UI\",system-ui,sans-serif;--mono:\"JetBrains Mono\",ui-monospace,Consolas,monospace;--ease:cubic-bezier(.16,1,.3,1)} .ds-note{background:var(--amber-soft);border:1px solid rgba(226,165,74,.5);border-radius:var(--r);padding:1rem 1.2rem;max-width:34rem;color:var(--text);font:400 1rem/1.6 var(--body)}.ds-note b{color:var(--amber)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "El grafo del motor",
+    "overview": "El sitio se lee como el lienzo de un editor de nodos (Blueprints, Shader Graph): un suelo grafito casi negro con rejilla doble, sobre el que flotan nodos de pizarra con encabezado de color por tipo, pines circulares en los bordes y cables tipados que llevan datos, eventos o llamadas. La arquitectura del curso se ve, no se describe: el hub dibuja las ocho semanas como un grafo cableado por fases, y cada clase abre con su grafo de temas que se arma solo, nodo por nodo.\n\nEs oscuro y sobrio, pero no el tema genérico de editor: el color es escaso y siempre significa algo. El ámbar marca acción y \"aquí\"; el teal, datos y lo ya hecho; el azul pizarra, llamadas y lo neutro; el rojo apagado, solo antipatrones y errores. La densidad es de herramienta de lectura: columnas de 70ch, cuerpo en Atkinson Hyperlegible Next a 17px con interlineado amplio, títulos en Archivo ensanchado. El movimiento es marcado pero con propósito: los nodos llegan, los cables se dibujan, un pulso recorre cada cable; todo se apaga con prefers-reduced-motion.\n\nEl mazo de slides es el mismo mundo en un lienzo fijo de 1600×900 escalado a la pantalla; en celular deja de escalar y se lee en columna. La impresión invierte el mundo a papel blanco y tinta negra.",
+    "keyCharacteristics": [
+      "Suelo grafito con rejilla de 24px y 120px como única textura.",
+      "Nodo de pizarra con encabezado tintado por tipo, en mono mayúscula, y pines circulares.",
+      "Cables con color semántico fijo: teal datos, ámbar eventos, pizarra llamadas.",
+      "El pin (círculo con borde; relleno = activo/conectado) es la firma en viñetas, marcas, etiquetas y estado.",
+      "Estado como marca además de color: relleno del pin, tachado, texto \"correcta\", \"aquí quedaste\".",
+      "Lo ya visto se atenúa (opacidad .5) y lo nuevo llega nítido."
+    ],
+    "rules": [
+      {
+        "name": "The Typed Wire Rule",
+        "body": "Cada señal tiene un significado y solo uno: teal datos, ámbar eventos/acción/aquí, pizarra llamadas, rojo apagado error/antipatrón, verde acierto, violeta patrón. Si un elemento no lleva ese significado, va en neutro.",
+        "section": "colors"
+      },
+      {
+        "name": "The Soft Tint Rule",
+        "body": "Los fondos de color son siempre la señal al 13 % de opacidad sobre pizarra (p. ej. rgba(226,165,74,.13)); los bordes tintados, la señal al 50–60 %. Nunca un relleno saturado de superficie salvo el botón principal, el toggle presionado en teal, la semana \"hoy\" y los tonos de estado de los nodos de figura (encendido ámbar, falla #a9473f, acierto #2e7653).",
+        "section": "colors"
+      },
+      {
+        "name": "The Paper Inversion Rule",
+        "body": "En impresión el mundo pasa a blanco con tinta #111318, ámbar #9a5f00, teal #1d6e62, verde #1f6b3e, rojo #a3332c; se ocultan cabecera, riel, pie y grafos.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mono Is Machinery Rule",
+        "body": "JetBrains Mono aparece solo donde habla el motor: código, pines, contadores, números, encabezados de nodo. Nunca en prosa ni en títulos.",
+        "section": "typography"
+      },
+      {
+        "name": "The Wide Title Rule",
+        "body": "Los títulos usan Archivo con font-stretch entre 104 % y 118 % y tracking negativo; más ancho cuanto más grande.",
+        "section": "typography"
+      },
+      {
+        "name": "The Long Dark Shadow Rule",
+        "body": "Las sombras son difusas, negras y con spread negativo; solo separan nodo de suelo. El color nunca está en la sombra.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do asignar cada color por su significado de cable (The Typed Wire Rule); lo que no tiene significado va en neutro.",
+      "Do construir contenedores nuevos como nodos: pizarra, arista de 1px, radio 10px, encabezado tintado en mono mayúscula cuando el contenedor tiene tipo.",
+      "Do marcar estado con forma además de color: pin relleno o hueco, tachado, palabra explícita.",
+      "Do dibujar figuras nuevas con FIG (lienzo, caja, flecha, grafo, ruta) para heredar nodos, pines y cables.",
+      "Do atenuar lo ya visto a .5 y dejar que lo nuevo llegue nítido; respetar prefers-reduced-motion y el modo sin animación.",
+      "Do usar iconos SVG en línea de trazo 2px.",
+      "Do mantener la prosa a 70ch y el cuerpo a 1.0625rem/1.65."
+    ],
+    "donts": [
+      "Don't usar rojo apagado fuera de antipatrones, errores y avisos.",
+      "Don't usar rellenos saturados de superficie salvo el botón principal, el toggle presionado en teal, la semana actual y los tonos de estado de los nodos de figura.",
+      "Don't volver a los colores chillones y arcade del sitio anterior ni al tema oscuro genérico de editor.",
+      "Don't usar el verde institucional de la CUN.",
+      "Don't usar sombras duras, desplazadas o de color.",
+      "Don't usar JetBrains Mono para prosa o títulos."
+    ]
+  }
+}

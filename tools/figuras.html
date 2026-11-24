@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Atkinson+Hyperlegible+Next:wght@400..700&family=JetBrains+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/deck.css">
+<title>Banco de figuras</title>
+<style>
+  body { background: #060c24; margin: 0; padding: 16px; }
+  .fila { position: relative; width: 1600px; height: 900px; background: var(--card); margin: 0 0 24px; transform-origin: 0 0; font: 400 30px/1.4 var(--body); }
+  .fila h1 { font: 900 40px/1 var(--display); margin: 0; padding: 30px 72px 0; }
+  .fila .cols { position: absolute; inset: 100px 72px 48px; }
+</style>
+</head>
+<body>
+<!-- Herramienta de revisión: muestra cada figura de una semana en una columna del lienzo real. Uso: tools/figuras.html?s=2 -->
+<div id="todo"></div>
+<script src="../assets/fig.js"></script>
+<script>
+(async function () {
+  const n = new URLSearchParams(location.search).get('s') || '1';
+  window.DEMOS = {};
+  await new Promise(r => { const s = document.createElement('script'); s.src = '../demos/s' + n + '.js?' + Date.now(); s.onload = r; s.onerror = r; document.head.appendChild(s); });
+  const z = Math.min(1, (innerWidth - 32) / 1600), cont = document.getElementById('todo');
+  Object.keys(DEMOS).forEach(k => {
+    const w = document.createElement('div'); w.className = 'fila'; w.style.transform = `scale(${z})`; w.style.marginBottom = (24 - 900 * (1 - z)) + 'px';
+    w.innerHTML = `<h1>${k}</h1><div class="cols" style="--izq:42"><div class="col"><div class="figura demo" data-k="${k}"></div></div><div class="col"><div class="figura demo" data-k="${k}"></div></div></div>`;
+    cont.appendChild(w);
+    w.querySelectorAll('[data-k]').forEach((el, i) => { if (i === 0) { el.closest('.col').style.flex = '58 1 0'; el.closest('.col').nextElementSibling.style.flex = '42 1 0'; } try { DEMOS[k](el); } catch (e) { el.textContent = 'ERROR: ' + e.message; } });
+  });
+})();
+</script>
+</body>
+</html>

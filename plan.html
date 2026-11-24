@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Atkinson+Hyperlegible+Next:wght@400..700&family=JetBrains+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<title>Plan del curso · Arquitectura de Videojuegos</title>
+</head>
+<body data-page="plan">
+<header class="mast" id="mast" data-meta="Bloque 26ES6 · Bloque 1 · 23 nov 2026 a 17 ene 2027 · 3 créditos" data-h1="Plan del curso" data-q="Qué se enseña cada semana, por qué en ese orden y cómo se sabe que funcionó."></header>
+<main class="wrap">
+<div class="doctools"><a class="btn" href="entregables/Plan-del-curso.pdf" download>Descargar PDF</a><button class="btn alt" onclick="print()">Imprimir</button></div>
+<div class="printonly"><h1>Plan del curso · Arquitectura de Videojuegos</h1><p>CUN · Especialización en Diseño y Desarrollo de Videojuegos · Bloque 26ES6, Bloque 1 · 23 nov 2026 a 17 ene 2027 · Docente: Andrés Ordóñez-Bolaños</p></div>
+<div class="cols"><div class="prose">
+
+<h2>La idea del curso en una frase</h2>
+<p>Se aprende arquitectura arreglando un juego enredado, no memorizando diagramas. Todo el curso gira alrededor de un solo paciente, <a href="proyecto/TurnoNocturno/README.html">Turno Nocturno</a>: un juego que funciona y está mal construido. Cada clase entrega una herramienta para rescatarlo y los dos ACA son el rescate.</p>
+<div class="note key"><p><b>Competencia del syllabus.</b> Categoriza la arquitectura de software, en el contexto de patrones de diseño, buenas prácticas, técnicas de optimización de memoria y estrategias de testing y depuración, para garantizar la modularidad, la escalabilidad y el desempeño en contextos reales y simulados para videojuegos.</p></div>
+
+<h2>Cómo se enseña cada clase</h2>
+<p>Las ocho clases siguen el mismo ritmo, para que el estudiante sepa siempre qué esperar:</p>
+<ol>
+  <li><b>Gancho (5 min).</b> Un problema real de equipo: "el productor pide X y se rompe Y".</li>
+  <li><b>Analogía antes que definición.</b> Cocina, enchufe, semáforo, bolera. La definición técnica llega cuando la idea ya se entiende.</li>
+  <li><b>Antipatrón y solución en el mismo marco.</b> El código malo sale de Turno Nocturno; al lado, el mismo código arreglado.</li>
+  <li><b>Predecir antes de ver.</b> Cada bloque tiene una pregunta que se responde en el chat antes de revelar. Equivocarse primero ayuda a recordar.</li>
+  <li><b>Demo que se puede mover.</b> Un control deslizante o un botón que deja ver la idea funcionando.</li>
+  <li><b>Actividad en parejas (10 a 15 min).</b> Siempre produce algo que sirve para el ACA.</li>
+  <li><b>Cierre con tres ideas y quiz.</b> El quiz no da nota: le dice a cada uno qué repasar.</li>
+</ol>
+<p>El código aparece primero en <b>C# puro</b>, sin motor, para ver la idea desnuda y poder probarla. Una pestaña muestra la misma idea en <b>Unity</b>. <b>Lua</b> entra donde es natural: como formato de datos y como capa de scripting (semanas 4 y 6), y conecta con lo que traen de LÖVE. <b>C++</b> aparece en la semana 5 para ver la memoria sin recolector de basura.</p>
+
+<h2>Las 8 semanas</h2>
+<div class="tblwrap"><table class="tbl">
+  <thead><tr><th>Sem.</th><th>Fecha</th><th>Tema del syllabus</th><th>Clase</th><th>Analogía central</th><th>Avance del rescate</th><th>Evaluación</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Jue 26 nov</td><td rowspan="2">Fundamentos de la arquitectura de software</td><td><a href="clase.html?s=1">Qué es la arquitectura de un juego</a>: costo del cambio, game loop, delta time, capas del motor</td><td>La cocina por estaciones</td><td>Jugar y cazar olores</td><td>Quiz de conceptos previos (sin nota)</td></tr>
+    <tr><td>2</td><td>Jue 3 dic</td><td><a href="clase.html?s=2">Acoplamiento, cohesión y composición</a>: interfaces, S, O y D de SOLID, componentes</td><td>El enchufe de pared</td><td>Lista de módulos</td><td><b>Quiz-parcial · 30 %</b></td></tr>
+    <tr><td>3</td><td>Jue 10 dic</td><td rowspan="2">Patrones de diseño y buenas prácticas</td><td><a href="clase.html?s=3">Patrones I</a>: State, Observer, Command</td><td>Semáforo, campana, comanda</td><td>Máquina de estados y eventos</td><td>Abre ACA 1</td></tr>
+    <tr><td>4</td><td>Jue 17 dic</td><td><a href="clase.html?s=4">Patrones II</a>: Factory, Strategy, Service Locator, datos externos</td><td>La carta del restaurante</td><td>Fábrica y contrato de datos</td><td>Asesoría ACA 1</td></tr>
+    <tr><td>5</td><td>21 a 27 dic*</td><td>Gestión de memoria y optimización</td><td><a href="clase.html?s=5">Memoria y optimización</a>: stack y heap, recolector, RAII, object pool, medir</td><td>Los zapatos de la bolera</td><td>Asignaciones por frame</td><td><b>Entrega ACA 1 · 30 %</b></td></tr>
+    <tr><td>6</td><td>28 dic a 3 ene*</td><td>Escalabilidad y modularidad en videojuegos</td><td><a href="clase.html?s=6">Escalabilidad y modularidad</a>: módulos, dependencias, bus de eventos, scripting, ECS</td><td>La ciudad por barrios</td><td>Núcleo separado</td><td>Abre ACA 2</td></tr>
+    <tr><td>7</td><td>Jue 7 ene</td><td>Testing y depuración de videojuegos</td><td><a href="clase.html?s=7">Testing y depuración</a>: pruebas unitarias, determinismo, depurar con método</td><td>El piloto y el detective</td><td>Plan de pruebas</td><td><b>Entrega ACA 2 · 32 %</b></td></tr>
+    <tr><td>8</td><td>Jue 14 ene</td><td>Integración</td><td><a href="clase.html?s=8">Socialización y cierre</a>: demos, post-mortem, mapa del curso</td><td>Mirar la repetición</td><td>Demo de 5 minutos</td><td><b>Auto 4 % y co 4 %</b></td></tr>
+  </tbody>
+</table></div>
+<p style="margin-top:.8rem">* Los jueves 24 y 31 de diciembre no hay sesión: se mueve a otro día de la misma semana. Falta fijar el día y la hora con el grupo en la semana 4.</p>
+
+<h2>El mapa del curso</h2>
+<p>Cinco fases, cuatro preguntas y un solo proyecto. Cada fase deja una herramienta que la siguiente necesita.</p>
+<div class="tblwrap"><table class="tbl">
+  <thead><tr><th>Fase</th><th>Semanas</th><th>Pregunta que responde</th><th>Idea que debe quedar</th><th>Producto en Turno Nocturno</th></tr></thead>
+  <tbody>
+    <tr><td><b>Fundamentos</b></td><td>1 y 2</td><td>¿Cómo se parte un juego?</td><td>La arquitectura se mide por el costo del cambio. Piezas con poco acoplamiento y mucha cohesión.</td><td>Lista de olores y módulos propuestos</td></tr>
+    <tr><td><b>Patrones</b></td><td>3 y 4</td><td>¿Cómo cambia de comportamiento y crece sin cadenas de if?</td><td>State, Observer, Command, Factory, Strategy y datos externos resuelven problemas concretos, no se ponen por adorno.</td><td>Plano del ACA 1: estados, eventos, fábrica</td></tr>
+    <tr><td><b>Rendimiento y escala</b></td><td>5 y 6</td><td>¿Aguanta más carga, más contenido y más equipo?</td><td>Se mide antes de optimizar. Las dependencias apuntan hacia las reglas del juego.</td><td>Pool medido, núcleo separado, datos en JSON o Lua</td></tr>
+    <tr><td><b>Calidad</b></td><td>7</td><td>¿Puedo demostrar que funciona?</td><td>Lo que se deja probar está bien armado. Depurar es un método.</td><td>Pruebas unitarias e informe de un bug (ACA 2)</td></tr>
+    <tr><td><b>Cierre</b></td><td>8</td><td>¿Qué defiendo y qué cambiaría?</td><td>Una decisión se defiende con una razón y una cifra.</td><td>Demo de 5 minutos y post-mortem</td></tr>
+  </tbody>
+</table></div>
+<p>Cada clase abre con una slide del mapa que muestra dónde está el grupo, la pregunta de la semana y la próxima entrega. La clase 1 recorre el mapa completo con las ocho analogías.</p>
+
+<h2>Alineación: objetivo, actividad y evidencia</h2>
+<p>Cada semana sube un nivel de exigencia (taxonomía de Bloom revisada) y deja una evidencia que se puede revisar.</p>
+<div class="tblwrap"><table class="tbl">
+  <thead><tr><th>Sem.</th><th>El estudiante logra</th><th>Nivel</th><th>Actividad en clase</th><th>Evidencia</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Explicar qué es arquitectura y escribir un game loop con delta time</td><td>Comprender, aplicar</td><td>Caza de olores en parejas</td><td>Quiz de clase; tres olores anotados</td></tr>
+    <tr><td>2</td><td>Distinguir acoplamiento y cohesión y proponer interfaces y componentes</td><td>Analizar</td><td>Partir Turno Nocturno en módulos</td><td>Quiz-parcial (30 %)</td></tr>
+    <tr><td>3</td><td>Modelar el flujo con State y desacoplar con Observer y Command</td><td>Aplicar, analizar</td><td>Máquina de estados del juego</td><td>Criterio 3 del ACA 1</td></tr>
+    <tr><td>4</td><td>Elegir entre Factory, Strategy, Service Locator y datos externos según el problema</td><td>Evaluar</td><td>Contrato de datos para bichos</td><td>Criterio 2 del ACA 1 y asesoría</td></tr>
+    <tr><td>5</td><td>Medir asignaciones, aplicar un pool y justificar con cifras</td><td>Aplicar, evaluar</td><td>Encontrar asignaciones por frame</td><td>Entrega ACA 1 (30 %); criterio 2 del ACA 2</td></tr>
+    <tr><td>6</td><td>Diseñar módulos con dependencias hacia el núcleo y extender con Lua</td><td>Crear</td><td>Separar el núcleo de la consola</td><td>Criterios 1 y 3 del ACA 2</td></tr>
+    <tr><td>7</td><td>Escribir pruebas unitarias y depurar con método</td><td>Aplicar, crear</td><td>Plan de pruebas e informe de bug</td><td>Entrega ACA 2 (32 %), criterio 4</td></tr>
+    <tr><td>8</td><td>Defender decisiones de arquitectura y evaluar el trabajo propio y ajeno</td><td>Evaluar</td><td>Demos y post-mortem</td><td>Auto y coevaluación (8 %); diagnóstico repetido</td></tr>
+  </tbody>
+</table></div>
+
+<h2>Control de calidad del material</h2>
+<p>Cada clase se revisó contra estos criterios antes de publicarla:</p>
+<div class="tblwrap"><table class="tbl">
+  <thead><tr><th>Criterio</th><th>Por qué importa</th><th>Cómo se cumple</th></tr></thead>
+  <tbody>
+    <tr><td><b>Analogía antes que definición</b></td><td>Una estructura conocida se transfiere a la nueva (Gentner, 1983).</td><td>Cada concepto abre con un mapa «escena cotidiana → concepto», fila por fila.</td></tr>
+    <tr><td><b>Predecir antes de ver</b></td><td>Recuperar y equivocarse primero fortalece la memoria (Roediger y Karpicke, 2006).</td><td>Preguntas con opciones dentro de las slides y quiz al cerrar cada clase.</td></tr>
+    <tr><td><b>Una idea por slide</b></td><td>La memoria de trabajo es limitada (Sweller, 1988).</td><td>Máximo 90 palabras por slide; lo que se dice en voz alta va en la nota del docente.</td></tr>
+    <tr><td><b>Imagen y palabra juntas</b></td><td>Se aprende mejor con palabras e imágenes coordinadas que con texto solo (Mayer, 2009).</td><td>Figuras interactivas y diagramas en casi todas las slides; código resaltado línea por línea.</td></tr>
+    <tr><td><b>Ejemplos resueltos y reales</b></td><td>Ver la solución completa antes de resolver reduce la carga y da un modelo.</td><td>Antes y después en el mismo marco; casos de juegos publicados con su fuente.</td></tr>
+    <tr><td><b>Alineación constructiva</b></td><td>Objetivo, actividad y evaluación deben pedir lo mismo (Biggs, 1996).</td><td>Tabla de alineación anterior; cada actividad alimenta un criterio de un ACA.</td></tr>
+    <tr><td><b>Exactitud técnica</b></td><td>Un error en el material se aprende igual que un acierto.</td><td>Código revisado contra las APIs actuales (.NET 8, Unity 6) y validador automático del material.</td></tr>
+  </tbody>
+</table></div>
+
+<h2>Por qué en este orden</h2>
+<ul>
+  <li><b>Primero el dolor, después la cura.</b> La semana 1 muestra un juego enredado antes de hablar de soluciones. Sin el problema, los patrones se sienten burocracia.</li>
+  <li><b>Acoplamiento antes que patrones.</b> Casi todos los patrones son maneras de bajar el acoplamiento. Si esa idea queda clara en la semana 2, las semanas 3 y 4 son consecuencia.</li>
+  <li><b>Memoria después de la estructura.</b> Un pool es fácil de poner cuando las chispas ya son una clase; es casi imposible en listas paralelas.</li>
+  <li><b>Pruebas al final, pero preparadas desde el inicio.</b> Separar las reglas de la consola (semanas 2 a 6) es lo que hace posible probar en la semana 7. Ahí se entiende para qué servía todo.</li>
+</ul>
+
+<h2>Cómo se cumple la estrategia didáctica del syllabus</h2>
+<div class="tblwrap"><table class="tbl">
+  <thead><tr><th>Estrategia del syllabus</th><th>Dónde ocurre</th></tr></thead>
+  <tbody>
+    <tr><td>Evaluación diagnóstica con cuestionario estructurado</td><td><a href="quiz.html?s=diag">Quiz de conceptos previos</a>, semana 1. Se repite en la semana 8 para medir el avance.</td></tr>
+    <tr><td>Resumen Analítico de Estudio (RAE)</td><td>Mini RAE dentro del ACA 1, sobre Gregory (2018), Ullmann et al. (2023, 2024) o Nystrom.</td></tr>
+    <tr><td>Seminario Alemán</td><td>Semana 8: cada equipo expone, otro equipo hace de correlator con "dos estrellas y un deseo" y se levanta un post-mortem común.</td></tr>
+    <tr><td>Talleres prácticos con estudios de caso</td><td>La actividad en parejas de cada clase, siempre sobre Turno Nocturno.</td></tr>
+    <tr><td>Trabajo aplicado que recoge la temática</td><td>ACA 1 (plano) y ACA 2 (obra).</td></tr>
+    <tr><td>Mentefacto</td><td>Mapa del curso de la semana 8: ocho ideas, su analogía y la herramienta asociada.</td></tr>
+    <tr><td>Autoevaluación y evaluación recíproca</td><td>Auto y coevaluación del Corte III (4 % + 4 %).</td></tr>
+  </tbody>
+</table></div>
+
+<h2>Evaluación</h2>
+<div class="tblwrap"><table class="tbl">
+  <thead><tr><th>Corte</th><th>Instrumento</th><th>Qué mide</th><th>Cierra</th><th>Peso</th></tr></thead>
+  <tbody>
+    <tr><td>I</td><td>Quiz-parcial en la sesión de la semana 2 (25 min). Sale del banco de quices de las clases 1 y 2.</td><td>Fundamentos: costo del cambio, game loop, capas, acoplamiento, cohesión, composición</td><td>06/12/2026</td><td class="pct">30 %</td></tr>
+    <tr><td>II</td><td><a href="docs/aca1.html">ACA 1</a>: diagnóstico y plano de rescate</td><td>Analizar y diseñar: olores, módulos, patrones, máquina de estados</td><td>27/12/2026</td><td class="pct">30 %</td></tr>
+    <tr><td>III</td><td><a href="docs/aca2.html">ACA 2</a>: el rescate implementado</td><td>Construir, medir y probar: patrones, pool, datos, pruebas</td><td>10/01/2027</td><td class="pct">32 %</td></tr>
+    <tr><td>III</td><td>Autoevaluación y coevaluación</td><td>Trabajo en equipo y honestidad sobre el propio proceso</td><td>10/01/2027</td><td class="pct">8 %</td></tr>
+  </tbody>
+</table></div>
+
+<h2>Lista de chequeo del docente, semana a semana</h2>
+<ul>
+  <li><b>Antes de la semana 1:</b> publicar el enlace del sitio en C Digital, probar <code>dotnet run</code> de Turno Nocturno y pedir que instalen el SDK de .NET 8.</li>
+  <li><b>Semana 2:</b> armar el parcial con 10 preguntas del banco de las clases 1 y 2 y configurarlo en C Digital.</li>
+  <li><b>Semana 3:</b> abrir el ACA 1 en C Digital y formar parejas.</li>
+  <li><b>Semana 4:</b> acordar día y hora de las sesiones de las semanas 5 y 6. Asesoría: cada equipo muestra su diagrama 3 minutos.</li>
+  <li><b>Semana 5:</b> recordar el cierre del ACA 1 (27/12). Reporte de notas del Corte II: 30/12.</li>
+  <li><b>Semana 6:</b> abrir el ACA 2 y la auto y coevaluación.</li>
+  <li><b>Semana 7:</b> recordar el cierre del ACA 2 (10/01). Sortear el orden de las demos.</li>
+  <li><b>Semana 8:</b> demos, post-mortem, quiz inicial otra vez. Reporte de notas del Corte III: 13/01.</li>
+</ul>
+
+<h2>Bibliografía de trabajo</h2>
+<ul>
+  <li>Gregory, J. (2018). <i>Game Engine Architecture</i> (3.ª ed.). CRC Press. Libro base de capas, memoria y game loop.</li>
+  <li>Nystrom, R. (2014). <i>Game Programming Patterns</i>. Genever Benning. Libre en línea; base de las semanas 3 a 5.</li>
+  <li>Rollings, A., y Morris, D. (2004). <i>Game Architecture and Design: A New Edition</i>. New Riders.</li>
+  <li>Ullmann, G. C., et al. (2023). <i>Visualising Game Engine Subsystem Coupling</i>. arXiv:2309.06329. Lectura para el mini RAE.</li>
+  <li>Ullmann, G. C., et al. (2024). <i>SyDRA: An Approach to Understand Game Engine Architecture</i>. arXiv:2406.05487. Lectura para el mini RAE.</li>
+  <li>Biggs, J. (1996). Enhancing teaching through constructive alignment. <i>Higher Education</i>, 32(3), 347-364.</li>
+  <li>Gentner, D. (1983). Structure-mapping: A theoretical framework for analogy. <i>Cognitive Science</i>, 7(2), 155-170.</li>
+  <li>Mayer, R. E. (2009). <i>Multimedia Learning</i> (2.ª ed.). Cambridge University Press.</li>
+  <li>Roediger, H. L., y Karpicke, J. D. (2006). Test-enhanced learning: Taking memory tests improves long-term retention. <i>Psychological Science</i>, 17(3), 249-255.</li>
+  <li>Sweller, J. (1988). Cognitive load during problem solving: Effects on learning. <i>Cognitive Science</i>, 12(2), 257-285.</li>
+  <li>González Sánchez, J. L., Padilla Zea, N., y Gutiérrez, F. L. (2009). Ingeniería de videojuegos: un nuevo reto para la ingeniería del software. <i>REICIS</i>, 5(3), 14-23.</li>
+</ul>
+
+<h2 id="anexo-diagnostico">Anexo: quiz de conceptos previos con clave</h2>
+<p>Se aplica en la semana 1 (15 minutos, sin nota) y se repite en la semana 8. Versión para estudiantes y versión docente en <a href="docs/quiz-diagnostico.html">Documentos</a>.</p>
+<div id="anexo" class="anexo"></div>
+</div>
+<aside class="side">
+  <h3>Reparto de horas</h3>
+  <ol class="agenda">
+    <li><b>32 h</b><span>Fundamentos de arquitectura · semanas 1 y 2</span></li>
+    <li><b>32 h</b><span>Patrones y buenas prácticas · semanas 3 y 4</span></li>
+    <li><b>32 h</b><span>Memoria y optimización · semana 5 y ACA 2</span></li>
+    <li><b>16 h</b><span>Escalabilidad y modularidad · semana 6</span></li>
+    <li><b>32 h</b><span>Testing y depuración · semanas 7 y 8</span></li>
+  </ol>
+  <p style="margin:1rem 0 0">144 horas: 24 de acompañamiento directo y 120 de trabajo autónomo, la mayoría dentro de los dos ACA.</p>
+</aside></div>
+</main>
+<div id="foot"></div>
+<script src="data/curso.js"></script>
+<script src="data/diagnostico.js"></script>
+<script src="assets/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var Q = (window.DIAGNOSTICO || {}).quiz || [], L = 'ABCD';
+  document.getElementById('anexo').innerHTML = Q.map(function (q, i) {
+    return '<div class="qz"><p><b>' + (i + 1) + '. ' + q.q + '</b></p><ol type="A">' + q.opts.map(function (o) { return '<li>' + o + '</li>'; }).join('') + '</ol><p class="ans"><b>Respuesta: ' + L[q.ok] + '.</b> ' + q.why + (q.usa ? ' <i>Se retoma en: ' + q.usa + '.</i>' : '') + '</p></div>';
+  }).join('');
+});
+</script>
+</body>
+</html>

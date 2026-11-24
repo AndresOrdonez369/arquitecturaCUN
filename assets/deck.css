@@ -1,0 +1,249 @@
+/* Mazo v3: lienzo fijo de 1600×900 que se escala a la pantalla, sobre la rejilla de un editor de nodos.
+   Todo dentro del lienzo se mide en px de ese lienzo. */
+body.deck { background: #08090b; overflow: hidden; height: 100dvh; margin: 0; }
+.stage { position: fixed; inset: 0 0 3.2rem 0; overflow: hidden; background: #08090b; font-size: 16px; }
+.canvas { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; transform-origin: 0 0; background: var(--grid), var(--bg); color: var(--text); overflow: hidden; font: 400 30px/1.42 var(--body); }
+.slide { --k: var(--slate); --k-soft: var(--slate-soft); position: absolute; inset: 0; padding: 54px 72px 46px; display: flex; flex-direction: column; gap: 26px; min-height: 0; }
+.slide > header { flex: none; }
+.slide h1 { font: 800 60px/1.04 var(--display); font-stretch: 112%; letter-spacing: -.022em; margin: 0; max-width: 1340px; text-wrap: balance; color: #fff; }
+.slide .lead { font-size: 34px; line-height: 1.32; margin: 16px 0 0; max-width: 1260px; color: var(--text-2); font-weight: 400; text-wrap: pretty; }
+.slide p { margin: 0 0 .55em; max-width: none; }
+.slide p:last-child { margin-bottom: 0; }
+.slide .big { font: 700 40px/1.25 var(--display); font-stretch: 104%; text-wrap: balance; color: #fff; }
+.slide h2 { font: 700 27px/1.15 var(--display); font-stretch: 106%; margin: 0 0 12px; color: #fff; }
+.slide b, .slide strong { color: #fff; }
+.slide :not(pre) > code { font-size: .84em; }
+.slide a { color: var(--amber); }
+
+/* color por tipo de slide: el color del cable que la identifica */
+.k-portada, .k-analogia, .k-actividad { --k: var(--amber); --k-soft: var(--amber-soft); }
+.k-codigo, .k-demo, .k-cierre, .k-mapa { --k: var(--teal); --k-soft: var(--teal-soft); }
+.k-reto { --k: var(--violet); --k-soft: var(--violet-soft); }
+.k-antipatron { --k: var(--rose); --k-soft: var(--rose-soft); }
+.k-idea, .k-industria { --k: var(--slate); --k-soft: var(--slate-soft); }
+/* un cable fino a la izquierda del título marca el tipo */
+.slide > header { position: relative; padding-left: 30px; }
+.slide > header::before { content: ""; position: absolute; left: 0; top: 14px; width: 14px; height: 14px; border-radius: 50%; border: 3px solid var(--k); background: var(--bg); }
+.slide > header::after { content: ""; position: absolute; left: 6.5px; top: 34px; bottom: -14px; width: 3px; border-radius: 2px; background: linear-gradient(var(--k), transparent); opacity: .55; }
+
+/* disposición */
+.cols { flex: 1; min-height: 0; display: flex; gap: 48px; align-items: stretch; }
+.cols > .col:first-child { flex: var(--izq, 44) 1 0; }
+.cols > .col:last-child { flex: calc(100 - var(--izq, 44)) 1 0; }
+.col, .full { display: flex; flex-direction: column; gap: 20px; min-height: 0; min-width: 0; justify-content: center; }
+.full { flex: 1; }
+.col.top, .full.top { justify-content: flex-start; }
+
+/* entrada de la slide: el título se enfoca y los bloques llegan en orden */
+@keyframes enfoca { from { opacity: 0; transform: translateY(16px); filter: blur(6px); } }
+@keyframes llega { from { opacity: 0; transform: translateY(22px); } }
+.slide > header h1 { animation: enfoca .7s var(--ease) both; }
+.slide > header .lead { animation: enfoca .7s .08s var(--ease) both; }
+.col > *, .full > * { animation: llega .65s calc(.16s + var(--i, 0) * .08s) var(--ease) backwards; }
+.cols > .col:last-child > * { animation-delay: calc(.26s + var(--i, 0) * .08s); }
+
+/* revelado por pasos: lo oculto conserva su espacio; lo nuevo llega nítido y lo ya visto se atenúa */
+[data-paso] { opacity: 0; transform: translateY(18px); filter: blur(4px); transition: opacity .5s var(--ease), transform .6s var(--ease), filter .5s var(--ease); pointer-events: none; }
+[data-paso].on { opacity: 1; transform: none; filter: none; pointer-events: auto; }
+[data-paso].on.visto { opacity: .5; }
+i[data-paso] { display: none; }
+.sin-anim *, .sin-anim *::before, .sin-anim *::after { animation: none !important; transition: none !important; }
+
+/* viñetas y números como pines */
+.pts { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.pts li { position: relative; padding-left: 40px; }
+.pts li::before { content: ""; position: absolute; left: 2px; top: .38em; width: 13px; height: 13px; border-radius: 50%; border: 3px solid var(--k); }
+.pts li.on::before { background: var(--k); }
+.pts li:not([data-paso])::before { background: var(--k); }
+.nums { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; counter-reset: n; position: relative; }
+.nums li { counter-increment: n; position: relative; padding-left: 70px; min-height: 50px; display: flex; flex-direction: column; justify-content: center; }
+.nums li::before { content: counter(n); position: absolute; left: 0; top: 0; width: 46px; height: 46px; border-radius: 50%; border: 2.5px solid var(--k); background: var(--surface); color: var(--k); display: grid; place-items: center; font: 700 22px/1 var(--mono); }
+.nums li:not(:last-child)::after { content: ""; position: absolute; left: 22px; top: 48px; bottom: -16px; width: 2px; background: var(--edge-2); }
+
+/* idea clave: un nodo ámbar con su pin */
+.clave { position: relative; background: var(--amber-soft); border: 1.5px solid rgba(226, 165, 74, .6); border-radius: 14px; padding: 20px 28px 20px 34px; font: 700 31px/1.28 var(--body); color: #fff; }
+.clave::before { content: ""; position: absolute; left: -9px; top: 50%; width: 14px; height: 14px; margin-top: -9px; border-radius: 50%; background: var(--amber); border: 3px solid var(--bg); }
+.pie { font-size: 22px; color: var(--text-3); }
+
+/* panel: nodo con encabezado */
+.panel { position: relative; background: var(--surface); border: 1.5px solid var(--edge); border-radius: 16px; padding: 0 28px 24px; display: flex; flex-direction: column; gap: 14px; --tipo: var(--slate); }
+.panel > h2 { margin: 0 -28px 4px; padding: 14px 28px; border-bottom: 1px solid var(--edge); background: linear-gradient(var(--tipo-s, var(--slate-soft)), var(--tipo-s, var(--slate-soft))), var(--surface-2); border-radius: 15px 15px 0 0; color: var(--tipo); font: 700 21px/1 var(--mono); letter-spacing: .03em; text-transform: uppercase; display: flex; align-items: center; gap: 12px; }
+.panel > h2::before { content: ""; width: 11px; height: 11px; border-radius: 50%; background: var(--tipo); }
+.panel:not(:has(> h2)) { padding-top: 24px; }
+.panel.malo { --tipo: var(--rose); --tipo-s: var(--rose-soft); border-color: rgba(224, 112, 106, .55); }
+.panel.bueno { --tipo: var(--green); --tipo-s: var(--green-soft); border-color: rgba(102, 187, 135, .55); }
+
+/* mapa de analogía: dos nodos unidos por un cable que se dibuja y lleva un pulso */
+.mapa { display: grid; gap: 14px; }
+.mapa .mh, .mapa .mr { display: grid; grid-template-columns: minmax(0, 1fr) 90px minmax(0, 1fr); align-items: center; }
+.mapa .mh { font: 700 21px/1 var(--body); color: var(--text-3); padding: 0 4px 2px; }
+.mapa .mh span:first-child { color: var(--amber); } .mapa .mh span:last-child { color: var(--teal); }
+.mapa .a, .mapa .b { position: relative; background: var(--surface); border: 1.5px solid var(--edge); border-radius: 12px; padding: 14px 20px; font-weight: 700; font-size: 27px; line-height: 1.22; color: #fff; }
+.mapa .a { box-shadow: inset 0 3px 0 var(--amber); }
+.mapa .b { box-shadow: inset 0 3px 0 var(--teal); }
+.mapa .b small, .mapa .a small { display: block; font-weight: 400; font-size: 20px; color: var(--text-2); margin-top: 4px; }
+.mapa .fl { height: 3px; position: relative; margin: 0 2px; background: linear-gradient(90deg, var(--amber), var(--teal)); border-radius: 2px; transform-origin: left; }
+.mapa .fl::before, .mapa .fl::after { content: ""; position: absolute; top: 50%; width: 12px; height: 12px; margin-top: -6px; border-radius: 50%; }
+.mapa .fl::before { left: -6px; background: var(--amber); }
+.mapa .fl::after { right: -6px; background: var(--teal); }
+.mapa .mr[data-paso] .fl { transform: scaleX(0); transition: transform .7s .15s cubic-bezier(.65, 0, .35, 1); }
+.mapa .mr.on .fl, .mapa .mr:not([data-paso]) .fl { transform: none; }
+
+/* tabla */
+.slide table { border-collapse: separate; border-spacing: 0; width: 100%; font-size: 25px; line-height: 1.28; background: var(--surface); border: 1.5px solid var(--edge); border-radius: 14px; overflow: hidden; }
+.slide th { background: var(--surface-2); color: var(--k); text-align: left; padding: 13px 20px; font: 700 20px/1.2 var(--body); border-bottom: 1px solid var(--edge); }
+.slide td { padding: 13px 20px; border-top: 1px solid var(--edge); vertical-align: top; color: var(--text-2); }
+.slide td b { color: #fff; }
+.slide tbody tr:first-child td { border-top: 0; }
+
+/* código con resaltado por pasos */
+.dcode { border: 1.5px solid var(--edge); border-radius: 14px; overflow: hidden; background: var(--bg-2); display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+.dcode .tabs { display: flex; background: var(--surface); border-bottom: 1px solid var(--edge); flex: none; }
+.dcode .tabs button { font: 600 18px/1 var(--mono); color: var(--text-3); background: none; border: 0; padding: 14px 20px; cursor: pointer; border-bottom: 3px solid transparent; }
+.dcode .tabs button:hover { color: var(--text); }
+.dcode .tabs button[aria-selected="true"] { color: #fff; border-color: var(--teal); }
+.dcode .cap { font: 600 18px/1 var(--mono); padding: 14px 20px; background: var(--surface); color: var(--text-2); border-bottom: 1px solid var(--edge); flex: none; display: flex; align-items: center; gap: 10px; }
+.dcode .cap::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--teal); }
+.dcode.bad { border-color: rgba(224, 112, 106, .6); } .dcode.bad .cap { color: var(--rose); background: var(--rose-soft); } .dcode.bad .cap::before { background: var(--rose); }
+.dcode.good { border-color: rgba(102, 187, 135, .6); } .dcode.good .cap { color: var(--green); background: var(--green-soft); } .dcode.good .cap::before { background: var(--green); }
+.dcode pre { margin: 0; padding: 16px 0; color: #dfe3ea; font: 400 var(--cf, 22px)/1.52 var(--mono); overflow: hidden; tab-size: 4; }
+.dcode .ln { display: block; padding: 0 22px 0 26px; position: relative; white-space: pre; transition: background .35s, opacity .35s; min-height: 1.52em; }
+.dcode.marcando .ln { opacity: .38; }
+.dcode.marcando .ln.hot { opacity: 1; background: rgba(226, 165, 74, .12); }
+.dcode.marcando .ln.hot::before { content: ""; position: absolute; left: 8px; top: 50%; width: 8px; height: 8px; margin-top: -4px; border-radius: 50%; background: var(--amber); }
+.callout { position: relative; background: var(--surface); border: 1.5px solid rgba(226, 165, 74, .55); border-radius: 12px; padding: 14px 22px 14px 30px; font-weight: 400; font-size: 26px; line-height: 1.32; min-height: 2.9em; display: flex; align-items: center; color: var(--text); }
+.callout b { color: var(--amber); }
+.callout::before { content: ""; position: absolute; left: -8px; top: 50%; width: 12px; height: 12px; margin-top: -8px; border-radius: 50%; background: var(--amber); border: 3px solid var(--bg); }
+.callout.nuevo { animation: enfoca .45s var(--ease); }
+.callout:empty::after { content: "Avanza con la flecha para recorrer el código."; color: var(--text-3); }
+.dcompare { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 26px; min-height: 0; }
+
+/* pregunta dentro del lienzo */
+.slide .check { position: relative; border: 1.5px solid var(--edge); border-radius: 16px; background: var(--surface); padding: 20px 24px 22px; margin: 0; max-width: none; }
+.slide .check .q { font-weight: 700; font-size: 29px; line-height: 1.26; margin-bottom: 14px; color: #fff; }
+.slide .opts { gap: 10px; }
+.slide .opt { font-size: 25px; line-height: 1.25; padding: 12px 16px; border-width: 1.5px; border-radius: 10px; gap: 14px; align-items: center; }
+.slide .opt .l { width: 38px; height: 38px; font-size: 18px; }
+.slide .opt.ok::after { font-size: 16px; }
+.slide .why { font-size: 24px; line-height: 1.32; padding: 13px 18px; border-width: 1.5px; border-radius: 10px; margin-top: 12px; }
+.slide .opts .opt { animation: llega .5s calc(.3s + var(--j, 0) * .06s) var(--ease) backwards; }
+
+/* figuras interactivas */
+.figura { border: 1.5px solid var(--edge); border-radius: 16px; background: var(--surface); padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 14px; min-height: 0; flex: 0 1 auto; font-size: 23px; max-width: none; margin: 0; color: var(--text); }
+.figura svg { display: block; width: 100%; height: auto; flex: 0 1 auto; min-height: 0; max-height: 100%; border-radius: 10px; background: var(--grid), var(--bg-2); }
+.figura svg text { font-family: var(--body); }
+.figura canvas { display: block; width: auto; max-width: 100%; height: auto; max-height: 470px; margin-inline: auto; border-radius: 10px; background: var(--bg-2); flex: 0 1 auto; min-height: 0; }
+.figura .ctl { display: flex; flex-wrap: wrap; gap: 12px 22px; align-items: center; margin: 0; flex: none; }
+.figura label { display: flex; align-items: center; gap: 12px; font-weight: 700; color: var(--text-2); }
+.figura input[type=range] { accent-color: var(--amber); width: 240px; height: 28px; }
+.figura input[type=checkbox] { accent-color: var(--amber); width: 26px; height: 26px; }
+.figura button { font: 700 21px/1 var(--body); padding: 13px 20px; border-radius: 9px; border: 1.5px solid var(--amber); background: var(--amber); color: var(--amber-ink); cursor: pointer; transition: transform .2s var(--ease), background .2s, border-color .2s; }
+.figura button:hover { transform: translateY(-2px); background: #edb662; }
+.figura button.sec { background: var(--surface-2); color: var(--text); border-color: var(--edge-2); }
+.figura button.sec:hover { border-color: var(--text-3); background: var(--surface-3); }
+.figura button[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #08110f; }
+.figura .seg { display: inline-flex; border: 1.5px solid var(--edge-2); border-radius: 10px; overflow: hidden; }
+.figura .seg button { border: 0; border-radius: 0; background: var(--surface-2); color: var(--text-2); }
+.figura .seg button + button { border-left: 1px solid var(--edge); }
+.figura .seg button:hover { transform: none; background: var(--surface-3); color: #fff; }
+.figura .seg button[aria-pressed="true"] { background: var(--teal); color: #08110f; }
+.figura .out { font-family: var(--mono); font-size: 20px; font-variant-numeric: tabular-nums; color: var(--amber); }
+.figura .dice { font-weight: 400; font-size: 24px; line-height: 1.34; min-height: 3.3em; display: block; padding: 12px 18px; border-radius: 10px; background: var(--surface-2); border: 1px solid var(--edge); flex: none; color: var(--text); }
+.figura .dice b { color: #fff; }
+.figura .dice.bad { background: var(--rose-soft); border-color: rgba(224, 112, 106, .6); }
+.figura .dice.ok { background: var(--green-soft); border-color: rgba(102, 187, 135, .6); }
+.figura .log { font-family: var(--mono); font-size: 19px; background: var(--bg-2); border: 1px solid var(--edge); color: #cfd5df; border-radius: 10px; padding: 12px 16px; min-height: 4.4em; max-height: 6.5em; overflow: auto; margin: 0; white-space: pre-wrap; flex: none; }
+/* los cables de las figuras se dibujan al aparecer */
+@keyframes dibuja { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.figura line.fg-dibuja { stroke-dasharray: 1; animation: dibuja .7s .2s cubic-bezier(.65, 0, .35, 1) backwards; }
+
+/* portada y cierre */
+.k-portada { justify-content: center; padding-left: 110px; }
+.k-portada h1 { font-size: 100px; line-height: .98; font-stretch: 118%; max-width: 1250px; letter-spacing: -.03em; }
+.k-portada .lead { font: 600 26px/1.3 var(--mono); color: var(--amber); margin-top: 26px; }
+.k-portada .full { flex: none; margin-top: 18px; }
+.k-portada .pie, .k-cierre .pie { color: var(--text-3); }
+.k-portada > header::before { top: 28px; width: 22px; height: 22px; border-width: 4px; left: -6px; }
+.k-portada > header::after { left: 3.5px; top: 56px; }
+.k-cierre .nums li::before { border-color: var(--teal); color: var(--teal); }
+.kbd { display: inline-block; border: 1.5px solid var(--edge-2); border-bottom-width: 4px; border-radius: 7px; padding: 0 .4em; font: 600 .8em/1.5 var(--mono); color: var(--text); background: var(--surface-2); }
+
+/* analogía y actividad: el ámbar manda; antipatrón: el rojo apagado */
+.k-analogia h1 { color: #fff; }
+.k-antipatron .canvas, .k-antipatron { background: radial-gradient(1200px 500px at 0 0, rgba(224, 112, 106, .07), transparent 60%); }
+.k-analogia, .k-actividad { background: radial-gradient(1200px 500px at 0 0, rgba(226, 165, 74, .06), transparent 60%); }
+
+/* en juegos reales */
+.juegos { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 22px; }
+.juegos .jg { background: var(--surface); border: 1.5px solid var(--edge); border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; }
+.juegos .jg h2 { font: 700 29px/1.12 var(--display); font-stretch: 108%; margin: 0; color: #fff; padding: 16px 22px 14px; background: linear-gradient(var(--slate-soft), var(--slate-soft)), var(--surface-2); border-bottom: 1px solid var(--edge); display: flex; gap: 12px; align-items: baseline; }
+.juegos .jg h2::before { content: ""; width: 11px; height: 11px; border-radius: 50%; background: var(--slate); flex: none; transform: translateY(-3px); }
+.juegos .jg .que { font-size: 24px; line-height: 1.34; margin: 0; padding: 16px 22px 0; color: var(--text); }
+.juegos .jg .src { font: 17px/1.4 var(--body); color: var(--text-3); margin-top: auto; padding: 14px 22px 16px; }
+
+/* ruta del curso y grafo de temas */
+.figura.ruta, .figura.grafo { gap: 0; padding: 0; overflow: hidden; background: var(--bg-2); }
+.figura.ruta svg, .figura.grafo svg { border-radius: 0; }
+.ruta-ficha, .grafo-ficha { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 8px 30px; background: var(--surface); border-top: 1px solid var(--edge); padding: 16px 24px 18px; font-size: 22px; line-height: 1.34; color: var(--text-2); }
+.ruta-ficha p, .grafo-ficha p { margin: 0 0 6px; }
+.ruta-ficha b, .grafo-ficha b { display: block; font: 700 30px/1.12 var(--display); font-stretch: 108%; margin: 2px 0 8px; color: #fff; }
+.ruta-ficha .rf-k, .grafo-ficha .rf-k { display: block; font: 700 18px/1.2 var(--body); color: var(--text-3); margin: 6px 0 2px; }
+.ruta-ficha .rf-s, .grafo-ficha .rf-s { display: block; font: 19px/1.3 var(--body); color: var(--text-3); margin: -2px 0 8px; }
+
+.figura.grafo .gnodo:focus-visible { outline: none; }
+.figura.grafo .gnodo:focus-visible rect:first-child { stroke: var(--amber); }
+
+/* ilustraciones estáticas en SVG */
+.ilus { min-height: 0; flex: 0 1 auto; display: flex; }
+.ilus svg { display: block; width: 100%; height: auto; max-height: 100%; border-radius: 14px; border: 1.5px solid var(--edge); }
+.ilus svg text { font-family: var(--body); }
+
+/* barra inferior */
+.deckbar .pasos { display: flex; gap: 6px; align-items: center; }
+.deckbar .pasos i { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--text-3); }
+.deckbar .pasos i.on { background: var(--amber); border-color: var(--amber); }
+
+/* celular: sin escala, lectura en columna */
+body.flow .stage { overflow-y: auto; }
+body.flow .canvas { position: static; width: auto; height: auto; min-height: 100%; transform: none !important; font-size: 17px; overflow: visible; }
+body.flow .slide { position: static; padding: 22px 18px 28px; gap: 16px; min-height: calc(100dvh - 3.2rem); }
+body.flow .slide > header { padding-left: 22px; }
+body.flow .slide > header::before { width: 10px; height: 10px; border-width: 2px; top: 9px; }
+body.flow .slide > header::after { left: 4.5px; top: 24px; width: 2px; }
+body.flow .slide h1 { font-size: 29px; }
+body.flow .k-portada { padding-left: 18px; } body.flow .k-portada h1 { font-size: 40px; } body.flow .k-portada .lead { font-size: 15px; }
+body.flow .slide .lead { font-size: 18px; margin-top: 10px; }
+body.flow .slide .big { font-size: 21px; }
+body.flow .slide h2 { font-size: 18px; }
+body.flow .cols, body.flow .dcompare { display: flex; flex-direction: column; gap: 16px; }
+body.flow .col, body.flow .full { justify-content: flex-start; gap: 14px; }
+body.flow [data-paso] { opacity: 1; transform: none; filter: none; pointer-events: auto; }
+body.flow .mapa .mr[data-paso] .fl { transform: none; }
+body.flow .clave { font-size: 18px; padding: 14px 16px 14px 22px; }
+body.flow .mapa .a, body.flow .mapa .b { font-size: 16px; padding: 10px 12px; }
+body.flow .mapa .a small, body.flow .mapa .b small { font-size: 14px; }
+body.flow .mapa .mh, body.flow .mapa .mr { grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr); }
+body.flow .mapa .mh { font-size: 12px; }
+body.flow .slide table { font-size: 15px; display: block; overflow-x: auto; } body.flow .slide th { font-size: 12px; } body.flow .slide td, body.flow .slide th { padding: 8px 10px; }
+body.flow .dcode pre { font-size: 12.5px; overflow-x: auto; }
+body.flow .dcode .tabs button, body.flow .dcode .cap { font-size: 13px; padding: 10px 12px; }
+body.flow .callout { font-size: 16px; }
+body.flow .slide .check .q { font-size: 18px; } body.flow .slide .opt { font-size: 16px; } body.flow .slide .why { font-size: 15px; }
+body.flow .slide .opt .l { width: 28px; height: 28px; font-size: 13px; }
+body.flow .figura { font-size: 15px; padding: 12px; }
+body.flow .figura button { font-size: 15px; padding: 10px 14px; }
+body.flow .figura .dice { font-size: 16px; } body.flow .figura .out { font-size: 14px; } body.flow .figura .log { font-size: 13px; }
+body.flow .figura svg { min-height: 220px; }
+body.flow .figura.ruta svg, body.flow .figura.grafo svg { min-height: 0; }
+body.flow .figura input[type=range] { width: 150px; }
+body.flow .panel { padding: 0 16px 16px; } body.flow .panel > h2 { margin: 0 -16px 4px; padding: 10px 16px; font-size: 14px; } body.flow .pie { font-size: 15px; }
+body.flow .nums li { padding-left: 46px; min-height: 34px; } body.flow .nums li::before { width: 32px; height: 32px; font-size: 15px; } body.flow .nums li:not(:last-child)::after { left: 15px; top: 34px; }
+body.flow .pts li { padding-left: 26px; } body.flow .pts li::before { width: 9px; height: 9px; border-width: 2px; }
+body.flow .ruta-ficha, body.flow .grafo-ficha { grid-template-columns: 1fr; font-size: 15px; padding: 12px 14px; }
+body.flow .ruta-ficha b, body.flow .grafo-ficha b { font-size: 19px; }
+body.flow .juegos { grid-template-columns: 1fr; }
+body.flow .juegos .jg h2 { font-size: 19px; } body.flow .juegos .jg .que { font-size: 15px; }
+body.flow .glista .gl { padding: 12px; } body.flow .glista .gl li { font-size: 15px; } body.flow .glista .gl b { font-size: 16px; }
+.k-portada .preg { display: block; font: 400 36px/1.3 var(--body); color: var(--text); max-width: 1180px; margin-bottom: 10px; text-wrap: balance; }
+body.flow .k-portada .preg { font-size: 19px; }
+.slide .glista .gl li { font-size: 22px; }

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Atkinson+Hyperlegible+Next:wght@400..700&family=JetBrains+Mono:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<title>Quiz de conceptos previos · Arquitectura de Videojuegos</title>
+</head>
+<body data-page="docs" data-base="../" class="nokey">
+<header class="mast" id="mast" data-meta="Semana 1 · evaluación diagnóstica · sin nota" data-h1="Quiz de conceptos previos" data-q="Diez preguntas de opción múltiple sobre lo que el estudiante trae de Programación de Videojuegos. Sirve de línea base y se repite en la semana 8."></header>
+<main class="wrap">
+  <div class="doctools">
+    <button class="btn" id="key">Mostrar respuestas</button>
+    <a class="btn alt" href="../entregables/Quiz-diagnostico-estudiante.pdf" download>PDF estudiante</a>
+    <a class="btn alt" href="../entregables/Quiz-diagnostico-con-respuestas.pdf" download>PDF con respuestas</a>
+    <a class="btn alt" href="../quiz.html?s=diag">Versión interactiva</a>
+  </div>
+  <article class="doc">
+    <h1>Quiz de conceptos previos</h1>
+    <table class="tbl ficha"><tbody>
+      <tr><td>Asignatura</td><td>Arquitectura de Videojuegos</td><td>Docente</td><td>Andrés Ordóñez-Bolaños</td></tr>
+      <tr><td>Periodo</td><td>Bloque 26ES6 · Bloque 1 · Semana 1</td><td>Duración</td><td>15 minutos · individual · sin apuntes</td></tr>
+      <tr><td>Nombre</td><td></td><td>Fecha</td><td>26 / 11 / 2026</td></tr>
+    </tbody></table>
+    <p><b>Instrucciones.</b> Marca una sola opción por pregunta. Este quiz no tiene nota: mide el punto de partida del grupo para ajustar el ritmo del curso. Se vuelve a presentar en la semana 8 para comparar.</p>
+    <div id="qs"></div>
+    <div class="hoja">
+      <h2>Hoja de respuestas</h2>
+      <p>Marca con una X la opción elegida.</p>
+      <table class="tbl" id="hoja"><thead><tr><th>Pregunta</th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead><tbody></tbody></table>
+    </div>
+    <div class="keyonly">
+      <h2>Clave de respuestas</h2>
+      <table class="tbl" id="clave"><thead><tr><th>N.º</th><th>Tema</th><th>Respuesta</th><th>Se retoma en</th></tr></thead><tbody></tbody></table>
+      <h2>Cómo leer el resultado del grupo</h2>
+      <ul>
+        <li><b>8 a 10 aciertos:</b> bases sólidas. Se puede ir directo a los patrones y dedicar más tiempo a los laboratorios.</li>
+        <li><b>5 a 7 aciertos:</b> ritmo previsto. Refuerza en la semana 2 los temas con más fallos.</li>
+        <li><b>0 a 4 aciertos:</b> abre la semana 2 con un repaso de 20 minutos de POO (clase, objeto, referencia) antes de acoplamiento y cohesión.</li>
+        <li>Si más de la mitad falla la pregunta 8 (valor y referencia), dedica 10 minutos extra al inicio de la semana 5.</li>
+      </ul>
+    </div>
+  </article>
+</main>
+<div id="foot"></div>
+<script src="../data/curso.js"></script>
+<script src="../data/diagnostico.js"></script>
+<script src="../assets/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var Q = window.DIAGNOSTICO.quiz, L = 'ABCD';
+  document.getElementById('qs').innerHTML = Q.map(function (q, i) {
+    return '<div class="qz"><p><b>' + (i + 1) + '.</b> ' + q.q + '</p><ol>' + q.opts.map(function (o) { return '<li>' + o + '</li>'; }).join('') +
+      '</ol><p class="ans"><b>Respuesta: ' + L[q.ok] + '.</b> ' + q.why + '</p></div>';
+  }).join('');
+  document.querySelector('#clave tbody').innerHTML = Q.map(function (q, i) {
+    return '<tr><td>' + (i + 1) + '</td><td>' + q.tema + '</td><td><b>' + L[q.ok] + '</b></td><td>' + q.usa + '</td></tr>';
+  }).join('');
+  document.querySelector('#hoja tbody').innerHTML = Q.map(function (q, i) { return '<tr><td>' + (i + 1) + '</td><td></td><td></td><td></td><td></td></tr>'; }).join('');
+  var b = document.getElementById('key');
+  if (/[?&]clave=1/.test(location.search)) { document.body.classList.remove('nokey'); b.textContent = 'Ocultar respuestas'; }
+  b.onclick = function () { var off = document.body.classList.toggle('nokey'); b.textContent = off ? 'Mostrar respuestas' : 'Ocultar respuestas'; };
+});
+</script>
+</body>
+</html>
